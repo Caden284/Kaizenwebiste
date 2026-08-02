@@ -481,6 +481,51 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.9,.3,1);}
 .reveal.in{opacity:1;transform:none;}
 
+/* ========== Social icon buttons ========== */
+.socials{display:inline-flex;align-items:center;gap:2px;}
+.socials a{
+  width:34px;height:34px;border-radius:999px;
+  display:inline-grid;place-items:center;color:var(--slate);
+  transition:.2s cubic-bezier(.2,.9,.3,1.2);
+}
+.socials a:hover{color:var(--navy);background:var(--light-gray);transform:translateY(-1px);}
+.socials a:active{transform:translateY(0) scale(.94);}
+.socials svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.nav .socials{margin-right:4px;}
+@media (max-width:960px){ .nav .socials{display:none;} }
+
+/* Footer social row */
+.footer-social{display:flex;gap:6px;margin-top:14px;}
+.footer-social a{
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid var(--line);color:var(--slate);
+  display:grid;place-items:center;transition:.25s;
+}
+.footer-social a:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-2px);}
+.footer-social a:active{transform:translateY(0) scale(.95);}
+.footer-social svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ========== Scroll progress bar ========== */
+.scroll-bar{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:100;pointer-events:none;
+  background:transparent;
+}
+.scroll-bar span{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--sage),var(--navy),var(--muted-blue));
+  transition:width .12s linear;
+}
+
+/* ========== Nav scrolled state ========== */
+.nav.scrolled{box-shadow:0 6px 24px rgba(21,43,71,.08);background:rgba(250,250,248,.9);}
+
+/* ========== Buttons — active/tactile feedback ========== */
+.btn:active,.pill:active,.filter:active,.tst-btn:active{transform:scale(.97);transition:.08s;}
+.btn,.pill,a{cursor:pointer;}
+
+/* ========== Focus visible — accessible tactile ring ========== */
+a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:6px;}
+
 /* Prefers reduced motion */
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
@@ -489,8 +534,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </head>
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-bar" aria-hidden="true"><span id="scrollBar"></span></div>
+
 <!-- NAV -->
-<nav class="nav" aria-label="Primary">
+<nav class="nav" id="nav" aria-label="Primary">
   <div class="brand">
     <span class="dot" aria-hidden="true"></span>
     Caden Fahie
@@ -503,6 +551,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <a href="#portfolio">Portfolio</a>
   </div>
   <div class="nav-cta">
+    <div class="socials" aria-label="Social links">
+      <a href="https://www.instagram.com/kaizen_284/?hl=en" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/kaizen284/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+      </a>
+      <a href="https://www.facebook.com/caden.fahie" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@Kaizen_284" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
     <a class="pill" href="#yin">Yin</a>
     <a class="pill solid" href="#yang">Yang</a>
   </div>
@@ -1029,16 +1091,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         </div>
       </div>
 
-      <!-- DESIGN — P2 Rebrand -->
+      <!-- DESIGN — P2 Social 2.0 Keynote -->
       <div class="tile design" data-cat="design" style="--r:5/6">
-        <a href="p2-rebrand.html" target="_blank" rel="noopener" class="tile-inner">
-          <div class="doc-mark">Brief · v1</div>
+        <a href="p2-social.html" target="_blank" rel="noopener" class="tile-inner">
+          <div class="doc-mark">Keynote · v2</div>
           <div>
-            <div class="kicker">Design · Rebrand</div>
-            <div class="title">P2 Rebrand —<br/>E-Board Brief.</div>
-            <div class="body">A standalone brief for an organizational rebrand — visual system, positioning, and rollout, packaged as a single portable document.</div>
+            <div class="kicker">Design · Social Strategy</div>
+            <div class="title">P2 Social 2.0 —<br/>Keynote.</div>
+            <div class="body">A visual keynote presenting the next chapter of the P2 social program — voice, cadence, content pillars, and rollout, delivered as a self-contained deck.</div>
           </div>
-          <div class="cta">Open the brief →</div>
+          <div class="cta">Open the keynote →</div>
         </a>
       </div>
 
@@ -1088,6 +1150,60 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         </div>
       </div>
 
+      <!-- CODE — Mentora -->
+      <div class="tile code" data-cat="code" style="--r:4/5">
+        <a href="https://github.com/Caden284/Mentora" target="_blank" rel="noopener" class="tile-inner">
+          <div class="code-head-tile">
+            <span class="dot-r" style="width:9px;height:9px;border-radius:999px;background:#EE6A5F;display:inline-block;"></span>
+            <span class="dot-y" style="width:9px;height:9px;border-radius:999px;background:#F5BE4F;display:inline-block;"></span>
+            <span class="dot-g" style="width:9px;height:9px;border-radius:999px;background:#61C554;display:inline-block;"></span>
+            <span class="file-tile">mentora</span>
+          </div>
+          <div class="code-body-tile">
+            <div>
+              <div class="repo-title">Mentora</div>
+              <div class="repo-desc">A mentorship app connecting students with the guidance they need — matching, messaging, and momentum.</div>
+            </div>
+            <div class="repo-meta">
+              <span class="lang">Code · GitHub</span>
+              <span class="link">View repo →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- PHOTO — 6 -->
+      <div class="tile" data-cat="photo" style="--r:2/3">
+        <div class="tile-inner">
+          <img src="port-photo-6.jpg" alt="Black and white portrait — thoughtful gaze" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography · Portrait</div><div class="title">In black &amp; white.</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — 7 -->
+      <div class="tile" data-cat="photo" style="--r:2/3">
+        <div class="tile-inner">
+          <img src="port-photo-7.jpg" alt="Graduate mid-walk on the city sidewalk" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography · Milestone</div><div class="title">Walking it out.</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — 8 -->
+      <div class="tile" data-cat="photo" style="--r:3/2">
+        <div class="tile-inner">
+          <img src="port-photo-8.jpg" alt="Portrait with newsboy cap — profile" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography · Street</div><div class="title">In profile.</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — 9 -->
+      <div class="tile" data-cat="photo" style="--r:2/3">
+        <div class="tile-inner">
+          <img src="port-photo-9.jpg" alt="Candid — student in orange sweatshirt on campus" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography · Campus</div><div class="title">Between classes.</div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1100,7 +1216,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <h3>Let's make something with <em>weight</em>.</h3>
         <p>Currently taking a small number of design, development, and creative-direction projects. If you have a problem worth thinking clearly about, I'd love to hear it.</p>
       </div>
-      <a class="btn btn-primary" href="mailto:hello@cadenfahie.com">Start a conversation →</a>
+      <a class="btn btn-primary" href="mailto:fahiecaden@gmail.com">Start a conversation →</a>
     </div>
   </div>
 </section>
@@ -1120,8 +1236,28 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <li><a href="#">Photography</a></li><li><a href="#">Videography</a></li><li><a href="#">Design</a></li><li><a href="#">Process</a></li>
       </ul></div>
       <div><h5>Connect</h5><ul>
-        <li><a href="mailto:hello@cadenfahie.com">Email</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">GitHub</a></li>
-      </ul></div>
+        <li><a href="mailto:fahiecaden@gmail.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/kaizen284/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/kaizen_284/?hl=en" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.facebook.com/caden.fahie" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.youtube.com/@Kaizen_284" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/Caden284" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+      <div class="footer-social" aria-label="Follow on social">
+        <a href="https://www.instagram.com/kaizen_284/?hl=en" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/kaizen284/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+        </a>
+        <a href="https://www.facebook.com/caden.fahie" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@Kaizen_284" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      </div>
     </div>
     <div class="copyright">
       <span>© 2026 Caden Fahie</span>
@@ -1131,6 +1267,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </footer>
 
 <script>
+// Scroll progress bar + nav elevation
+const scrollBar = document.getElementById('scrollBar');
+const nav = document.getElementById('nav');
+function onScroll(){
+  const h = document.documentElement;
+  const pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  if(scrollBar) scrollBar.style.width = (pct*100).toFixed(2) + '%';
+  if(nav) nav.classList.toggle('scrolled', h.scrollTop > 8);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
 // Reveal on scroll
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
