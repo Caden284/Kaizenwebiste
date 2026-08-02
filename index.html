@@ -4,6 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Caden Fahie — Yin & Yang</title>
+<meta name="description" content="Caden Fahie — student technologist and creative director. Two disciplines, one signature." />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta property="og:title" content="Caden Fahie — Yin & Yang" />
+<meta property="og:description" content="A student technologist and creative director. Two disciplines, one signature." />
+<meta property="og:image" content="og-image.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -347,7 +356,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .tst-mark{font-family:var(--yang-serif);font-size:80px;line-height:1;color:var(--sage-soft);position:absolute;top:20px;right:28px;font-style:italic;}
 .tst-quote{font-family:var(--yang-serif);font-size:22px;line-height:1.4;color:var(--slate);font-style:italic;}
 .tst-person{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:24px;border-top:1px solid var(--line);}
-.tst-avatar{width:48px;height:48px;border-radius:999px;background:linear-gradient(135deg,var(--sage-soft),var(--muted-blue-soft));display:grid;place-items:center;color:var(--navy);font-family:var(--yin-serif);font-weight:600;}
+.tst-avatar{width:52px;height:52px;border-radius:999px;background:var(--light-gray);display:grid;place-items:center;color:var(--navy);font-family:var(--yin-serif);font-weight:600;overflow:hidden;border:1px solid var(--line);flex-shrink:0;}
+.tst-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .tst-name{font-family:var(--yin-serif);color:var(--navy);font-weight:500;}
 .tst-role{font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;color:var(--slate-soft);text-transform:uppercase;margin-top:2px;}
 .tst-controls{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;}
@@ -365,6 +375,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   background:var(--light-gray);position:relative;cursor:pointer;transition:.35s;
 }
 .tile-inner{
+  display:block;
   aspect-ratio:var(--r, 4/5);position:relative;overflow:hidden;
 }
 .tile-inner .ph{position:absolute;inset:0;transition:.6s cubic-bezier(.2,.9,.3,1);}
@@ -878,7 +889,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <span class="tst-mark">"</span>
           <p class="tst-quote">Caden reads a project like a room — quietly and completely. By the time he starts building, half the problem is already solved.</p>
           <div class="tst-person">
-            <div class="tst-avatar">MR</div>
+            <div class="tst-avatar"><img src="avatar-1.svg" alt="" /></div>
             <div><div class="tst-name">Dr. M. Ramírez</div><div class="tst-role">Professor · Computer Science</div></div>
           </div>
         </article>
@@ -886,7 +897,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <span class="tst-mark">"</span>
           <p class="tst-quote">Rare mix of technical rigor and visual taste. He'll ship a system and then hand you a portrait that makes the team feel seen.</p>
           <div class="tst-person">
-            <div class="tst-avatar">JT</div>
+            <div class="tst-avatar"><img src="avatar-2.svg" alt="" /></div>
             <div><div class="tst-name">Jordan Tran</div><div class="tst-role">Founder · Studio Practice</div></div>
           </div>
         </article>
@@ -894,7 +905,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <span class="tst-mark">"</span>
           <p class="tst-quote">He leads by lowering the temperature of a room. People say more, decisions come out better, work ships faster.</p>
           <div class="tst-person">
-            <div class="tst-avatar">SC</div>
+            <div class="tst-avatar"><img src="avatar-3.svg" alt="" /></div>
             <div><div class="tst-name">Sofia Chen</div><div class="tst-role">Student Body Advisor</div></div>
           </div>
         </article>
@@ -902,7 +913,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <span class="tst-mark">"</span>
           <p class="tst-quote">Every asset Caden delivered fit the brand and the moment. He also over-delivered on quiet things — captions, alt text, file naming.</p>
           <div class="tst-person">
-            <div class="tst-avatar">AV</div>
+            <div class="tst-avatar"><img src="avatar-4.svg" alt="" /></div>
             <div><div class="tst-name">Alex Vega</div><div class="tst-role">Client · Nonprofit Program Lead</div></div>
           </div>
         </article>
