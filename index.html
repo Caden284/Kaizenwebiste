@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Caden Fahie — Yin & Yang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Neutral palette */
+  --warm-white:#FAFAF8;
+  --light-gray:#F3F4F6;
+  --mist:#E9ECF1;
+  --slate:#3F4A59;
+  --slate-soft:#5B6675;
+  --navy:#1E3A5F;
+  --navy-deep:#152B47;
+  --sage:#8FA98E;
+  --sage-soft:#B7C9B4;
+  --muted-blue:#7A94B2;
+  --muted-blue-soft:#B9C7D8;
+  --ink:#1A1F27;
+  --line:rgba(30,58,95,.10);
+
+  /* Type systems */
+  --yin-serif: "Space Grotesk","IBM Plex Sans",system-ui,sans-serif;
+  --yin-mono: "JetBrains Mono", ui-monospace, monospace;
+  --yin-body: "Inter", system-ui, sans-serif;
+  --yang-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --yang-body: "Inter", system-ui, sans-serif;
+
+  --radius-sm:10px;
+  --radius:18px;
+  --radius-lg:28px;
+  --shadow-sm: 0 1px 2px rgba(21,43,71,.06), 0 2px 6px rgba(21,43,71,.04);
+  --shadow: 0 8px 24px rgba(21,43,71,.08), 0 2px 6px rgba(21,43,71,.04);
+  --shadow-lg: 0 24px 60px rgba(21,43,71,.14);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--yin-body);
+  color:var(--ink);
+  background:var(--warm-white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+/* ========== Layout helpers ========== */
+.container{width:min(1200px, calc(100% - 48px));margin-inline:auto;}
+.section{padding:120px 0;position:relative;}
+.section-tight{padding:80px 0;}
+.eyebrow{
+  font-family:var(--yin-mono);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--slate-soft);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--slate-soft);display:inline-block;}
+.section-title{font-family:var(--yin-serif);font-size:clamp(32px,4.4vw,54px);letter-spacing:-.02em;line-height:1.05;font-weight:500;color:var(--navy);margin:14px 0 20px;}
+.section-sub{color:var(--slate);max-width:640px;font-size:17px;}
+
+/* ========== NAV ========== */
+.nav{
+  position:fixed;inset:16px 24px auto 24px;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px 12px 22px;
+  background:rgba(250,250,248,.75);
+  backdrop-filter:saturate(180%) blur(18px);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);
+  border:1px solid var(--line);
+  border-radius:999px;
+  box-shadow:var(--shadow-sm);
+}
+.brand{font-family:var(--yin-serif);font-weight:600;letter-spacing:-.01em;font-size:15px;display:flex;gap:10px;align-items:center;}
+.brand .dot{
+  width:22px;height:22px;border-radius:999px;
+  background:conic-gradient(from 0deg,var(--navy) 0 50%,var(--warm-white) 0 100%);
+  position:relative;box-shadow:inset 0 0 0 1px var(--line);
+}
+.brand .dot::after{content:"";position:absolute;inset:0;border-radius:999px;background:radial-gradient(circle at 50% 25%,var(--warm-white) 4px,transparent 5px),radial-gradient(circle at 50% 75%,var(--navy) 4px,transparent 5px);}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--slate);transition:.2s;}
+.nav-links a:hover{background:var(--light-gray);color:var(--navy);}
+.nav-cta{display:flex;gap:8px;align-items:center;}
+.pill{
+  padding:9px 16px;border-radius:999px;font-size:13px;letter-spacing:.01em;
+  border:1px solid var(--line);color:var(--navy);background:var(--warm-white);
+  transition:.2s;
+}
+.pill:hover{background:var(--navy);color:var(--warm-white);border-color:var(--navy);}
+.pill.solid{background:var(--navy);color:var(--warm-white);border-color:var(--navy);}
+.pill.solid:hover{background:var(--navy-deep);}
+@media (max-width:820px){ .nav-links{display:none;} }
+
+/* ========== HERO / YIN-YANG Splash ========== */
+.hero{padding:140px 0 80px;position:relative;overflow:hidden;}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .95fr;gap:56px;align-items:center;
+}
+.hero-left h1{
+  font-family:var(--yin-serif);
+  font-size:clamp(44px,7vw,92px);
+  letter-spacing:-.035em;line-height:.98;font-weight:500;color:var(--navy);
+}
+.hero-left h1 em{
+  font-family:var(--yang-serif);font-style:italic;font-weight:400;
+  color:var(--slate);letter-spacing:-.01em;
+}
+.hero-sub{max-width:520px;margin-top:24px;color:var(--slate);font-size:18px;}
+.hero-meta{display:flex;gap:22px;margin-top:18px;font-family:var(--yin-mono);font-size:11px;color:var(--slate-soft);letter-spacing:.16em;text-transform:uppercase;}
+.hero-meta span{display:inline-flex;gap:8px;align-items:center;}
+.hero-meta span::before{content:"";width:6px;height:6px;background:var(--sage);border-radius:999px;}
+.hero-ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;border-radius:12px;
+  font-size:14px;font-weight:500;letter-spacing:.01em;
+  transition:.25s cubic-bezier(.2,.9,.3,1.2);
+}
+.btn-primary{background:var(--navy);color:var(--warm-white);}
+.btn-primary:hover{background:var(--navy-deep);transform:translateY(-2px);box-shadow:var(--shadow);}
+.btn-ghost{border:1px solid var(--line);color:var(--navy);background:var(--warm-white);}
+.btn-ghost:hover{border-color:var(--navy);transform:translateY(-2px);}
+.btn .arrow{transition:.25s;}
+.btn:hover .arrow{transform:translateX(4px);}
+
+/* Yin-Yang emblem (SVG animated) */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;min-height:520px;}
+.emblem{
+  width:min(480px,90%);aspect-ratio:1/1;position:relative;
+  animation:rotate 40s linear infinite;
+}
+.emblem svg{width:100%;height:100%;display:block;}
+@keyframes rotate{to{transform:rotate(360deg);}}
+.emblem::before,.emblem::after{
+  content:"";position:absolute;inset:-30px;border-radius:50%;
+  border:1px dashed var(--line);
+  animation:rotateRev 60s linear infinite;
+}
+.emblem::after{inset:-70px;border-color:rgba(30,58,95,.05);}
+@keyframes rotateRev{to{transform:rotate(-360deg);}}
+
+.hero-labels{position:absolute;inset:0;pointer-events:none;}
+.hero-labels span{
+  position:absolute;font-family:var(--yin-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--slate-soft);
+}
+.hero-labels .yin{top:10%;left:0;}
+.hero-labels .yang{bottom:10%;right:0;font-family:var(--yang-serif);font-style:italic;font-size:14px;letter-spacing:.02em;color:var(--slate);text-transform:none;}
+
+/* VS Code inspired hero card */
+.code-card{
+  position:absolute;bottom:-30px;left:-30px;
+  width:280px;background:var(--warm-white);
+  border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow-lg);
+  overflow:hidden;
+  transform:rotate(-3deg);
+  transition:transform .4s;
+}
+.code-card:hover{transform:rotate(0);}
+.code-head{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--light-gray);border-bottom:1px solid var(--line);}
+.code-head .dot-r{width:10px;height:10px;border-radius:999px;background:#EE6A5F;}
+.code-head .dot-y{width:10px;height:10px;border-radius:999px;background:#F5BE4F;}
+.code-head .dot-g{width:10px;height:10px;border-radius:999px;background:#61C554;}
+.code-head .file{margin-left:auto;font-family:var(--yin-mono);font-size:11px;color:var(--slate-soft);}
+.code-body{padding:16px;font-family:var(--yin-mono);font-size:12px;line-height:1.7;color:var(--slate);}
+.tk-k{color:var(--navy);}
+.tk-s{color:var(--sage);}
+.tk-c{color:var(--slate-soft);font-style:italic;}
+.tk-v{color:var(--muted-blue);}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;}
+  .code-card{left:0;bottom:-10px;}
+}
+
+/* ========== YIN / YANG SPLIT ========== */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.split .side{padding:56px;background:var(--warm-white);position:relative;transition:.4s;}
+.split .yin{border-right:0;}
+.split .yang{background:linear-gradient(180deg,var(--warm-white) 0,#FBFAF6 100%);}
+.split .side:hover{background:var(--light-gray);}
+.side-tag{font-family:var(--yin-mono);font-size:11px;letter-spacing:.28em;color:var(--slate-soft);text-transform:uppercase;}
+.side.yang .side-tag{font-family:var(--yang-serif);font-style:italic;font-size:14px;letter-spacing:.02em;color:var(--slate);text-transform:none;}
+.side h2{margin:14px 0 12px;letter-spacing:-.02em;line-height:1.05;color:var(--navy);font-weight:500;}
+.side.yin h2{font-family:var(--yin-serif);font-size:44px;}
+.side.yang h2{font-family:var(--yang-serif);font-size:52px;font-style:italic;font-weight:400;color:var(--slate);}
+.side p{color:var(--slate);max-width:420px;font-size:16px;}
+.side ul{margin-top:22px;display:grid;gap:6px;color:var(--slate-soft);font-size:14px;}
+.side.yin li{font-family:var(--yin-mono);letter-spacing:.04em;}
+.side.yang li{font-family:var(--yang-serif);font-style:italic;font-size:18px;color:var(--slate);}
+.side .go{
+  margin-top:32px;display:inline-flex;align-items:center;gap:10px;
+  color:var(--navy);font-weight:500;border-bottom:1px solid var(--line);padding-bottom:8px;transition:.25s;
+}
+.side .go:hover{border-color:var(--navy);gap:14px;}
+@media (max-width:820px){ .split{grid-template-columns:1fr;} .split .side{padding:40px;} }
+
+/* ========== ABOUT — alternating story ========== */
+.story{display:grid;gap:80px;}
+.story-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.story-row.reverse{direction:rtl;}
+.story-row.reverse > *{direction:ltr;}
+.story-img{
+  aspect-ratio:5/6;border-radius:var(--radius);overflow:hidden;
+  background:var(--light-gray);
+  box-shadow:var(--shadow);position:relative;
+}
+.story-img .ph{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(80% 60% at 20% 10%, var(--sage-soft) 0, transparent 60%),
+    radial-gradient(60% 50% at 80% 90%, var(--muted-blue-soft) 0, transparent 60%),
+    linear-gradient(135deg, #E8E9EE 0%, #DCE1EA 100%);
+}
+.story-img .tag{
+  position:absolute;left:20px;bottom:20px;
+  padding:8px 14px;background:rgba(250,250,248,.9);backdrop-filter:blur(8px);
+  border-radius:999px;font-family:var(--yin-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);z-index:2;
+}
+.story-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.9,.3,1);}
+.story-img:hover img{transform:scale(1.03);}
+
+/* About intro with headshot */
+.about-intro{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;
+  margin-bottom:100px;
+}
+.about-intro .portrait{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  aspect-ratio:4/5;box-shadow:var(--shadow-lg);background:var(--light-gray);
+}
+.about-intro .portrait img{width:100%;height:100%;object-fit:cover;display:block;}
+.about-intro .portrait::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:40%;
+  background:linear-gradient(180deg,transparent,rgba(21,43,71,.35));pointer-events:none;
+}
+.about-intro .id-card{
+  position:absolute;left:20px;bottom:20px;right:20px;
+  padding:16px 18px;background:rgba(250,250,248,.92);backdrop-filter:blur(10px);
+  border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  border:1px solid rgba(255,255,255,.5);
+}
+.about-intro .id-name{font-family:var(--yin-serif);font-weight:600;color:var(--navy);font-size:15px;}
+.about-intro .id-role{font-family:var(--yin-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate-soft);margin-top:2px;}
+.about-intro .id-tag{font-family:var(--yang-serif);font-style:italic;color:var(--slate);font-size:16px;white-space:nowrap;}
+@media (max-width:820px){ .about-intro{grid-template-columns:1fr;gap:32px;margin-bottom:60px;} }
+.story-text h3{font-family:var(--yin-serif);font-size:32px;color:var(--navy);letter-spacing:-.02em;font-weight:500;margin:14px 0 12px;line-height:1.15;}
+.story-text p{color:var(--slate);font-size:16px;max-width:460px;}
+.story-text .quote{margin-top:20px;font-family:var(--yang-serif);font-style:italic;font-size:22px;color:var(--slate);line-height:1.35;border-left:2px solid var(--sage);padding-left:16px;}
+@media (max-width:820px){ .story-row,.story-row.reverse{grid-template-columns:1fr;direction:ltr;} .story-row.reverse > *{direction:ltr;} }
+
+/* ========== SERVICES grid ========== */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{
+  background:var(--warm-white);border:1px solid var(--line);
+  border-radius:var(--radius);padding:28px;transition:.35s cubic-bezier(.2,.9,.3,1.2);
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(143,169,142,.08));
+  opacity:0;transition:.35s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+.card:hover::before{opacity:1;}
+.card .icon{
+  width:44px;height:44px;border-radius:12px;background:var(--light-gray);
+  display:grid;place-items:center;color:var(--navy);
+  transition:.35s;
+}
+.card:hover .icon{background:var(--navy);color:var(--warm-white);transform:rotate(-6deg);}
+.card h4{font-family:var(--yin-serif);font-size:18px;color:var(--navy);margin:18px 0 6px;font-weight:600;}
+.card p{color:var(--slate-soft);font-size:14px;line-height:1.6;}
+.card .kind{position:absolute;top:18px;right:20px;font-family:var(--yin-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate-soft);}
+.card.creative .kind{font-family:var(--yang-serif);font-style:italic;font-size:13px;letter-spacing:.02em;text-transform:none;color:var(--slate);}
+@media (max-width:900px){ .services{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .services{grid-template-columns:1fr;} }
+
+/* ========== SKILLS ========== */
+.skills-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start;}
+.skills-list{display:grid;gap:22px;}
+.skill{display:grid;grid-template-columns:150px 1fr auto;gap:16px;align-items:center;}
+.skill .name{font-family:var(--yin-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);}
+.skill .bar{height:6px;background:var(--light-gray);border-radius:999px;overflow:hidden;position:relative;}
+.skill .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--navy),var(--muted-blue));border-radius:999px;transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.19,1,.22,1);}
+.skill.animate .bar span{transform:scaleX(var(--pct));}
+.skill .pct{font-family:var(--yin-mono);font-size:12px;color:var(--slate-soft);min-width:36px;text-align:right;}
+.stack-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+.stack-tags span{padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-family:var(--yin-mono);font-size:11px;color:var(--slate);letter-spacing:.08em;}
+@media (max-width:900px){ .skills-wrap{grid-template-columns:1fr;} .skill{grid-template-columns:120px 1fr auto;} }
+
+/* ========== LEADERSHIP — accordion ========== */
+.accordion{display:grid;gap:12px;}
+.acc-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--warm-white);overflow:hidden;transition:.3s;}
+.acc-item.open{box-shadow:var(--shadow);}
+.acc-head{
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:18px;align-items:center;
+  padding:22px 26px;cursor:pointer;transition:.2s;
+}
+.acc-item.open .acc-head{background:var(--light-gray);}
+.acc-num{font-family:var(--yin-mono);font-size:12px;color:var(--slate-soft);letter-spacing:.14em;}
+.acc-title{font-family:var(--yin-serif);font-size:19px;color:var(--navy);font-weight:500;}
+.acc-role{font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);}
+.acc-toggle{width:28px;height:28px;border-radius:999px;background:var(--warm-white);border:1px solid var(--line);display:grid;place-items:center;transition:.3s;}
+.acc-item.open .acc-toggle{background:var(--navy);color:var(--warm-white);transform:rotate(45deg);border-color:var(--navy);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.9,.3,1);}
+.acc-item.open .acc-body{max-height:600px;}
+.acc-inner{padding:0 26px 28px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;}
+.acc-inner p{color:var(--slate);font-size:15px;}
+.acc-facts{display:grid;gap:14px;}
+.acc-fact{padding:14px 16px;border-radius:12px;background:var(--light-gray);}
+.acc-fact .k{font-family:var(--yin-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate-soft);}
+.acc-fact .v{color:var(--navy);font-weight:500;margin-top:4px;}
+@media (max-width:820px){ .acc-inner{grid-template-columns:1fr;} .acc-head{grid-template-columns:auto 1fr auto;} .acc-role{display:none;} }
+
+/* ========== TESTIMONIALS carousel ========== */
+.tst-wrap{position:relative;}
+.tst-track{
+  display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:8px 4px 32px;scrollbar-width:none;
+}
+.tst-track::-webkit-scrollbar{display:none;}
+.tst-card{
+  flex:0 0 min(460px,80%);scroll-snap-align:start;
+  background:var(--warm-white);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:36px;position:relative;
+  transition:.3s;
+}
+.tst-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.tst-mark{font-family:var(--yang-serif);font-size:80px;line-height:1;color:var(--sage-soft);position:absolute;top:20px;right:28px;font-style:italic;}
+.tst-quote{font-family:var(--yang-serif);font-size:22px;line-height:1.4;color:var(--slate);font-style:italic;}
+.tst-person{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:24px;border-top:1px solid var(--line);}
+.tst-avatar{width:48px;height:48px;border-radius:999px;background:linear-gradient(135deg,var(--sage-soft),var(--muted-blue-soft));display:grid;place-items:center;color:var(--navy);font-family:var(--yin-serif);font-weight:600;}
+.tst-name{font-family:var(--yin-serif);color:var(--navy);font-weight:500;}
+.tst-role{font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;color:var(--slate-soft);text-transform:uppercase;margin-top:2px;}
+.tst-controls{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;}
+.tst-btn{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);color:var(--navy);display:grid;place-items:center;transition:.2s;}
+.tst-btn:hover{background:var(--navy);color:var(--warm-white);border-color:var(--navy);}
+
+/* ========== PORTFOLIO masonry ========== */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.filter{padding:8px 16px;border-radius:999px;border:1px solid var(--line);font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);transition:.2s;}
+.filter.on{background:var(--navy);color:var(--warm-white);border-color:var(--navy);}
+.filter:hover{border-color:var(--navy);}
+.masonry{columns:3;column-gap:20px;}
+.tile{
+  break-inside:avoid;margin-bottom:20px;border-radius:var(--radius);overflow:hidden;
+  background:var(--light-gray);position:relative;cursor:pointer;transition:.35s;
+}
+.tile-inner{
+  aspect-ratio:var(--r, 4/5);position:relative;overflow:hidden;
+}
+.tile-inner .ph{position:absolute;inset:0;transition:.6s cubic-bezier(.2,.9,.3,1);}
+.tile:hover .ph{transform:scale(1.05);}
+.tile-info{
+  position:absolute;inset:auto 0 0 0;padding:20px;
+  background:linear-gradient(180deg,transparent,rgba(21,43,71,.75));
+  color:var(--warm-white);opacity:0;transform:translateY(10px);transition:.35s;
+}
+.tile:hover .tile-info{opacity:1;transform:translateY(0);}
+.tile-info .kind{font-family:var(--yin-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;}
+.tile-info .title{font-family:var(--yang-serif);font-size:22px;font-style:italic;margin-top:4px;}
+@media (max-width:900px){ .masonry{columns:2;} }
+@media (max-width:560px){ .masonry{columns:1;} }
+
+/* Portfolio tile images fill their inner container */
+.tile-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.3,1);}
+.tile:hover .tile-inner img{transform:scale(1.05);}
+
+/* Site tile — external link indicator */
+.tile.site .tile-info .link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--yin-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  margin-top:6px;color:var(--sage-soft);
+}
+
+/* Code project tile — VS Code inspired card */
+.tile.code .tile-inner{
+  background:#0F1720;padding:0;color:var(--warm-white);
+  display:flex;flex-direction:column;
+}
+.tile.code a{display:flex;flex-direction:column;height:100%;color:inherit;}
+.tile.code .code-head-tile{
+  display:flex;align-items:center;gap:6px;padding:12px 16px;
+  background:#151E29;border-bottom:1px solid rgba(255,255,255,.05);
+  flex-shrink:0;
+}
+.tile.code .code-head-tile .file-tile{
+  margin-left:auto;font-family:var(--yin-mono);font-size:11px;color:#8B95A5;letter-spacing:.02em;
+}
+.tile.code .code-body-tile{padding:22px 20px 20px;display:flex;flex-direction:column;height:100%;justify-content:space-between;gap:16px;}
+.tile.code .repo-title{font-family:var(--yin-serif);font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--warm-white);}
+.tile.code .repo-desc{font-size:13px;line-height:1.55;color:#B8C1CE;max-width:280px;}
+.tile.code .repo-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);}
+.tile.code .lang{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--yin-mono);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#B8C1CE;
+}
+.tile.code .lang::before{content:"";width:8px;height:8px;border-radius:999px;background:var(--sage);}
+.tile.code .link{font-family:var(--yin-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-soft);transition:.2s;}
+.tile.code:hover .link{color:var(--warm-white);}
+.tile.code:hover .tile-inner{background:#0A121B;}
+
+/* Design brief tile */
+.tile.design .tile-inner{
+  background:
+    radial-gradient(70% 100% at 100% 0%, rgba(143,169,142,.25) 0, transparent 60%),
+    radial-gradient(60% 80% at 0% 100%, rgba(122,148,178,.22) 0, transparent 55%),
+    linear-gradient(135deg,#1E3A5F 0%,#152B47 100%);
+  color:var(--warm-white);padding:0;
+}
+.tile.design a{
+  display:flex;flex-direction:column;height:100%;padding:28px;color:inherit;justify-content:space-between;gap:20px;
+}
+.tile.design .kicker{font-family:var(--yin-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--sage-soft);}
+.tile.design .title{font-family:var(--yang-serif);font-style:italic;font-size:32px;line-height:1.1;color:var(--warm-white);letter-spacing:-.01em;}
+.tile.design .body{font-size:13px;line-height:1.55;color:rgba(250,250,248,.72);max-width:280px;}
+.tile.design .cta{font-family:var(--yin-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm-white);opacity:.75;transition:.2s;}
+.tile.design:hover .cta{opacity:1;transform:translateX(4px);}
+.tile.design .doc-mark{
+  align-self:flex-end;font-family:var(--yin-mono);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:999px;
+}
+
+/* ========== CTA banner ========== */
+.cta{
+  border-radius:var(--radius-lg);
+  background:
+    radial-gradient(60% 100% at 90% 0%, rgba(143,169,142,.22) 0, transparent 60%),
+    radial-gradient(60% 100% at 0% 100%, rgba(122,148,178,.28) 0, transparent 60%),
+    var(--navy);
+  color:var(--warm-white);padding:64px;display:grid;grid-template-columns:1.4fr auto;gap:32px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cta h3{font-family:var(--yin-serif);font-size:clamp(28px,3.5vw,42px);letter-spacing:-.02em;line-height:1.1;font-weight:500;}
+.cta h3 em{font-family:var(--yang-serif);font-style:italic;font-weight:400;color:var(--sage-soft);}
+.cta p{opacity:.75;margin-top:10px;max-width:540px;}
+.cta .btn-primary{background:var(--warm-white);color:var(--navy);}
+.cta .btn-primary:hover{background:var(--light-gray);}
+@media (max-width:820px){ .cta{grid-template-columns:1fr;padding:44px;} }
+
+/* ========== FOOTER ========== */
+.footer{padding:60px 0 40px;border-top:1px solid var(--line);margin-top:80px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;}
+.footer h5{font-family:var(--yin-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate-soft);margin-bottom:14px;}
+.footer ul{display:grid;gap:8px;list-style:none;}
+.footer a{color:var(--slate);font-size:14px;transition:.2s;}
+.footer a:hover{color:var(--navy);}
+.footer .copyright{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--slate-soft);font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;}
+@media (max-width:820px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+
+/* ========== reveal on scroll ========== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.9,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Primary">
+  <div class="brand">
+    <span class="dot" aria-hidden="true"></span>
+    Caden Fahie
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#skills">Skills</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#portfolio">Portfolio</a>
+  </div>
+  <div class="nav-cta">
+    <a class="pill" href="#yin">Yin</a>
+    <a class="pill solid" href="#yang">Yang</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-left reveal">
+      <span class="eyebrow">Portfolio · Est. 2026</span>
+      <h1>Two sides.<br/>One <em>signal.</em></h1>
+      <p class="hero-sub">I'm Caden Fahie — a student technologist and creative director. I build precise, accessible software and craft calm, cinematic visuals. Yin and yang, working in balance.</p>
+      <div class="hero-meta">
+        <span>Available for select projects</span>
+        <span>Based in the U.S.</span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#portfolio">Explore My Work <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#portfolio">View Portfolio</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal">
+      <div class="hero-labels" aria-hidden="true">
+        <span class="yin">// YIN — engineering</span>
+        <span class="yang">Yang — expression</span>
+      </div>
+      <div class="emblem" aria-hidden="true">
+        <!-- Yin-Yang SVG -->
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="lgDark" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#1E3A5F"/>
+              <stop offset="1" stop-color="#3F4A59"/>
+            </linearGradient>
+            <linearGradient id="lgLight" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="#FAFAF8"/>
+              <stop offset="1" stop-color="#F3F4F6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="98" fill="url(#lgLight)" stroke="#E9ECF1" stroke-width="1"/>
+          <path d="M100,2 a98,98 0 0,1 0,196 a49,49 0 0,1 0,-98 a49,49 0 0,0 0,-98 z" fill="url(#lgDark)"/>
+          <circle cx="100" cy="51" r="12" fill="#FAFAF8"/>
+          <circle cx="100" cy="149" r="12" fill="#1E3A5F"/>
+          <circle cx="100" cy="51" r="3" fill="#8FA98E"/>
+          <circle cx="100" cy="149" r="3" fill="#8FA98E"/>
+        </svg>
+      </div>
+
+      <!-- VS Code-inspired card -->
+      <aside class="code-card" aria-label="Code sample">
+        <div class="code-head">
+          <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+          <span class="file">caden.identity.ts</span>
+        </div>
+        <div class="code-body">
+<span class="tk-c">// two disciplines, one signature</span><br/>
+<span class="tk-k">const</span> <span class="tk-v">caden</span> = {<br/>
+&nbsp;&nbsp;yin: <span class="tk-s">"engineer / leader"</span>,<br/>
+&nbsp;&nbsp;yang: <span class="tk-s">"designer / storyteller"</span>,<br/>
+&nbsp;&nbsp;balance: <span class="tk-k">true</span><br/>
+};
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<!-- YIN / YANG SPLIT -->
+<section class="section">
+  <div class="container">
+    <div class="split reveal">
+      <a id="yin" class="side yin" href="#services">
+        <span class="side-tag">01 — Yin</span>
+        <h2>The Engineer.<br/>The Leader.</h2>
+        <p>Systematic thinking, technical depth, and civic responsibility. The half that ships, tests, and stands up for people.</p>
+        <ul>
+          <li>› Full-stack development</li>
+          <li>› IT & infrastructure</li>
+          <li>› Student government & advocacy</li>
+          <li>› Environmental leadership</li>
+        </ul>
+        <span class="go">Enter the Yin page →</span>
+      </a>
+      <a id="yang" class="side yang" href="#portfolio">
+        <span class="side-tag">02 — Yang</span>
+        <h2>The Artist.<br/>The Storyteller.</h2>
+        <p>Composition, light, rhythm, restraint. The half that sees a moment and turns it into a memory.</p>
+        <ul>
+          <li>· Photography &amp; videography</li>
+          <li>· Brand &amp; graphic design</li>
+          <li>· Creative direction</li>
+          <li>· Digital storytelling</li>
+        </ul>
+        <span class="go">Enter the Yang page →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-intro reveal">
+      <div>
+        <span class="eyebrow">About</span>
+        <h2 class="section-title">A single story, told in two languages.</h2>
+        <p class="section-sub">Told less in paragraphs, more in frames. Scroll through the moments that shape how I think and make.</p>
+        <p style="margin-top:22px;color:var(--slate);max-width:520px;font-size:16px;">I'm a student technologist and creative director working at the intersection of engineering, leadership, and visual craft. What you'll see below are the moments that continue to shape both halves of the practice.</p>
+      </div>
+      <div class="portrait">
+        <img src="headshot.jpg" alt="Portrait of Caden Fahie" loading="eager" />
+        <div class="id-card">
+          <div>
+            <div class="id-name">Caden Fahie</div>
+            <div class="id-role">Student · Technologist · Creator</div>
+          </div>
+          <div class="id-tag">balance.</div>
+        </div>
+      </div>
+    </div>
+    <div class="story" style="margin-top:24px;">
+      <div class="story-row reveal">
+        <div class="story-img"><img src="story-tech.jpg" alt="Caden at a multi-monitor workstation, coding" loading="lazy" /><span class="tag">Technology</span></div>
+        <div class="story-text">
+          <span class="eyebrow">01 — The Terminal</span>
+          <h3>Building things that behave the way people expect.</h3>
+          <p>My first love was the quiet certainty of code — the discipline of naming, structuring, and shipping. I study CS with a focus on interface design and infrastructure that stays out of the user's way.</p>
+        </div>
+      </div>
+      <div class="story-row reverse reveal">
+        <div class="story-img"><img src="story-lead.jpg" alt="Caden with a Collegiate 100 mentor before a program event" loading="lazy" /><span class="tag">Leadership</span></div>
+        <div class="story-text">
+          <span class="eyebrow">02 — The Room</span>
+          <h3>Leadership as a design practice.</h3>
+          <p>From student government to environmental initiatives, I've learned that leading is largely about listening well and reducing friction so a group can do its best work.</p>
+          <p class="quote">"Structure is a form of care."</p>
+        </div>
+      </div>
+      <div class="story-row reveal">
+        <div class="story-img"><img src="story-sustain.jpg" alt="Sustainability and community engagement" loading="lazy" /><span class="tag">Sustainability</span></div>
+        <div class="story-text">
+          <span class="eyebrow">03 — The Field</span>
+          <h3>A responsibility to the systems around us.</h3>
+          <p>I organize around sustainability and campus advocacy because the same systems thinking that improves an interface can improve a community.</p>
+        </div>
+      </div>
+      <div class="story-row reverse reveal">
+        <div class="story-img"><img src="story-creative.jpg" alt="Behind the scenes of creative work" loading="lazy" /><span class="tag">Creative</span></div>
+        <div class="story-text">
+          <span class="eyebrow">04 — The Frame</span>
+          <h3>Photography as a way of paying attention.</h3>
+          <p>When I put down the keyboard I pick up a camera. Light on a face, a hand in motion, a room settling into evening — the visual work keeps the technical work honest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <span class="eyebrow">Services</span>
+      <h2 class="section-title">Precise systems. Considered visuals.</h2>
+      <p class="section-sub">Choose one discipline, or hire both halves for a project that lives on the seam between engineering and art direction.</p>
+    </div>
+
+    <div class="services reveal" style="margin-top:56px;">
+      <!-- YIN -->
+      <div class="card">
+        <span class="kind">Yin · Tech</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="m16 21 4-4-4-4"/><path d="M14 3l-4 18"/></svg>
+        </div>
+        <h4>Website Development</h4>
+        <p>Modern, accessible sites built with fast, maintainable code and content models that a team can actually own.</p>
+      </div>
+      <div class="card">
+        <span class="kind">Yin · Tech</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h4>Web Design</h4>
+        <p>System-driven layouts and interaction patterns that scale from a landing page to a full product surface.</p>
+      </div>
+      <div class="card">
+        <span class="kind">Yin · Tech</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h4>Technical Consulting</h4>
+        <p>Second opinions on architecture, tooling, and hiring — with a bias toward calm systems over clever ones.</p>
+      </div>
+      <div class="card">
+        <span class="kind">Yin · Tech</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/></svg>
+        </div>
+        <h4>IT Support</h4>
+        <p>Practical, warm-hearted help with hardware, cloud accounts, and everyday troubleshooting for small teams.</p>
+      </div>
+
+      <!-- YANG -->
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18M3 12h18"/></svg>
+        </div>
+        <h4>Creative Direction</h4>
+        <p>Setting the tone, taste, and rhythm of a project — from mood boards to final delivery.</p>
+      </div>
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M7 6l2-3h6l2 3"/></svg>
+        </div>
+        <h4>Photography</h4>
+        <p>Portraits, event coverage, and brand imagery that reads as calm, cinematic, and specific to the subject.</p>
+      </div>
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h4>Videography</h4>
+        <p>Short films, recap edits, and product spotlights that put pace and restraint above spectacle.</p>
+      </div>
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v6H4zM4 14h10v6H4zM18 14h2v6h-2z"/></svg>
+        </div>
+        <h4>Brand Strategy</h4>
+        <p>Naming, positioning, and voice work that translates the founder's belief system into a coherent identity.</p>
+      </div>
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </div>
+        <h4>Graphic Design</h4>
+        <p>Editorial layouts, event collateral, and social systems that stay legible at every size.</p>
+      </div>
+      <div class="card creative">
+        <span class="kind">Yang · Craft</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+        </div>
+        <h4>Social Media Management</h4>
+        <p>Content pillars, calendar, and asset production — designed to feel like the brand, not the algorithm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="container skills-wrap">
+    <div class="reveal">
+      <span class="eyebrow">Technical Development</span>
+      <h2 class="section-title">A working knowledge, honestly rated.</h2>
+      <p class="section-sub">Progress reflects how comfortable I am shipping production work in each stack — not certificates on a shelf.</p>
+      <div class="stack-tags">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Wix Studio</span>
+        <span>C++</span><span>Java</span><span>Python</span><span>Git &amp; GitHub</span>
+        <span>UI/UX Design</span><span>Cybersecurity</span><span>IT Infrastructure</span>
+        <span>AI Tools &amp; Prompting</span>
+      </div>
+    </div>
+    <div class="skills-list reveal" id="skillsList">
+      <div class="skill" style="--pct:.92"><span class="name">HTML / CSS</span><span class="bar"><span></span></span><span class="pct">92%</span></div>
+      <div class="skill" style="--pct:.86"><span class="name">JavaScript</span><span class="bar"><span></span></span><span class="pct">86%</span></div>
+      <div class="skill" style="--pct:.78"><span class="name">React</span><span class="bar"><span></span></span><span class="pct">78%</span></div>
+      <div class="skill" style="--pct:.90"><span class="name">Wix Studio</span><span class="bar"><span></span></span><span class="pct">90%</span></div>
+      <div class="skill" style="--pct:.72"><span class="name">Python</span><span class="bar"><span></span></span><span class="pct">72%</span></div>
+      <div class="skill" style="--pct:.68"><span class="name">C++ / Java</span><span class="bar"><span></span></span><span class="pct">68%</span></div>
+      <div class="skill" style="--pct:.84"><span class="name">UI / UX</span><span class="bar"><span></span></span><span class="pct">84%</span></div>
+      <div class="skill" style="--pct:.75"><span class="name">Cybersecurity</span><span class="bar"><span></span></span><span class="pct">75%</span></div>
+      <div class="skill" style="--pct:.88"><span class="name">AI Tools</span><span class="bar"><span></span></span><span class="pct">88%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section" id="leadership" style="background:var(--light-gray);">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <span class="eyebrow">Leadership &amp; Advocacy</span>
+      <h2 class="section-title">Work in rooms bigger than a screen.</h2>
+      <p class="section-sub">A few of the organizations, initiatives, and roles I've held. Expand any card to see the role, impact, and skills built along the way.</p>
+    </div>
+    <div class="accordion reveal" style="margin-top:48px;">
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">01</span>
+          <span class="acc-title">Student Government Association</span>
+          <span class="acc-role">Elected Representative</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Advocated for student needs across academics, policy, and campus life. Co-authored two initiatives on transparent budget reporting and student mental-health access.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Impact</div><div class="v">2 policy proposals adopted</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Public speaking · Coalition building</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">02</span>
+          <span class="acc-title">Environmental &amp; Sustainability Initiatives</span>
+          <span class="acc-role">Organizer</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Helped launch and run campus programs focused on waste reduction, renewable literacy, and outdoor stewardship. Built partnerships with local nonprofits.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Impact</div><div class="v">300+ students engaged</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Program design · Volunteer ops</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">03</span>
+          <span class="acc-title">Community Organizations</span>
+          <span class="acc-role">Volunteer Lead</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Coordinated logistics and creative assets for community-facing events. Designed print collateral, ran run-of-show, captured coverage photography.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Impact</div><div class="v">12 events supported</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Event production · Design</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">04</span>
+          <span class="acc-title">University Leadership</span>
+          <span class="acc-role">Committee Member</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Serve on cross-functional committees bridging students, faculty, and staff. Focus on tech literacy, digital accessibility, and student communication tools.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Impact</div><div class="v">Faculty-student comms redesign</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Facilitation · Systems thinking</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">05</span>
+          <span class="acc-title">Campus Advocacy Projects</span>
+          <span class="acc-role">Contributor</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Contribute writing, design, and strategy to advocacy campaigns on equity, mental health, and student safety. Combine research, empathy, and clear visual language.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Impact</div><div class="v">3 campaigns delivered</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Copywriting · Visual identity</div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <span class="eyebrow">Voices of Impact</span>
+      <h2 class="section-title">Words from the people I work alongside.</h2>
+      <p class="section-sub">Collaborators, mentors, and organizational leaders on what it's like to build with me.</p>
+    </div>
+    <div class="tst-wrap reveal" style="margin-top:48px;">
+      <div class="tst-track" id="tstTrack">
+        <article class="tst-card">
+          <span class="tst-mark">"</span>
+          <p class="tst-quote">Caden reads a project like a room — quietly and completely. By the time he starts building, half the problem is already solved.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">MR</div>
+            <div><div class="tst-name">Dr. M. Ramírez</div><div class="tst-role">Professor · Computer Science</div></div>
+          </div>
+        </article>
+        <article class="tst-card">
+          <span class="tst-mark">"</span>
+          <p class="tst-quote">Rare mix of technical rigor and visual taste. He'll ship a system and then hand you a portrait that makes the team feel seen.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">JT</div>
+            <div><div class="tst-name">Jordan Tran</div><div class="tst-role">Founder · Studio Practice</div></div>
+          </div>
+        </article>
+        <article class="tst-card">
+          <span class="tst-mark">"</span>
+          <p class="tst-quote">He leads by lowering the temperature of a room. People say more, decisions come out better, work ships faster.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">SC</div>
+            <div><div class="tst-name">Sofia Chen</div><div class="tst-role">Student Body Advisor</div></div>
+          </div>
+        </article>
+        <article class="tst-card">
+          <span class="tst-mark">"</span>
+          <p class="tst-quote">Every asset Caden delivered fit the brand and the moment. He also over-delivered on quiet things — captions, alt text, file naming.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">AV</div>
+            <div><div class="tst-name">Alex Vega</div><div class="tst-role">Client · Nonprofit Program Lead</div></div>
+          </div>
+        </article>
+      </div>
+      <div class="tst-controls">
+        <button class="tst-btn" id="tstPrev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="tst-btn" id="tstNext" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <span class="eyebrow">Portfolio</span>
+      <h2 class="section-title">Selected work — <em style="font-family:var(--yang-serif);font-style:italic;color:var(--slate);">a gallery, not a résumé.</em></h2>
+      <p class="section-sub">A cross-section of photography, brand, product, and motion. Hover any piece for context.</p>
+    </div>
+
+    <div class="filter-row reveal" style="margin-top:32px;">
+      <button class="filter on" data-f="all">All</button>
+      <button class="filter" data-f="web">Websites</button>
+      <button class="filter" data-f="code">Code</button>
+      <button class="filter" data-f="photo">Photography</button>
+      <button class="filter" data-f="design">Design</button>
+    </div>
+
+    <div class="masonry reveal" id="masonry">
+
+      <!-- WEBSITE — Gems De La Rosa -->
+      <div class="tile site" data-cat="web" style="--r:4/3">
+        <a href="https://www.gemsdelarosa.com/" target="_blank" rel="noopener" class="tile-inner">
+          <img src="site-gems.jpg" alt="Screenshot of Gems De La Rosa homepage" loading="lazy" />
+          <div class="tile-info">
+            <div class="kind">Website · Live</div>
+            <div class="title">Gems De La Rosa</div>
+            <div class="link">gemsdelarosa.com ↗</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CODE — Stitch Vault -->
+      <div class="tile code" data-cat="code" style="--r:4/5">
+        <a href="https://github.com/Caden284/stitch-vault" target="_blank" rel="noopener" class="tile-inner">
+          <div class="code-head-tile">
+            <span class="dot-r" style="width:9px;height:9px;border-radius:999px;background:#EE6A5F;display:inline-block;"></span>
+            <span class="dot-y" style="width:9px;height:9px;border-radius:999px;background:#F5BE4F;display:inline-block;"></span>
+            <span class="dot-g" style="width:9px;height:9px;border-radius:999px;background:#61C554;display:inline-block;"></span>
+            <span class="file-tile">stitch-vault</span>
+          </div>
+          <div class="code-body-tile">
+            <div>
+              <div class="repo-title">Stitch Vault</div>
+              <div class="repo-desc">A structured space for storing and organizing personal projects and creative patterns.</div>
+            </div>
+            <div class="repo-meta">
+              <span class="lang">Code · GitHub</span>
+              <span class="link">View repo →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- PHOTO — 1 -->
+      <div class="tile" data-cat="photo" style="--r:3/4">
+        <div class="tile-inner">
+          <img src="port-photo-1.jpg" alt="Graduate portrait — reading in the library" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography</div><div class="title">Between the shelves.</div></div>
+        </div>
+      </div>
+
+      <!-- WEBSITE — Rapha's -->
+      <div class="tile site" data-cat="web" style="--r:4/3">
+        <a href="https://www.raphascounseling.com/" target="_blank" rel="noopener" class="tile-inner">
+          <img src="site-rapha.jpg" alt="Screenshot of Rapha's Counseling Center homepage" loading="lazy" />
+          <div class="tile-info">
+            <div class="kind">Website · Live</div>
+            <div class="title">Rapha's Counseling Center</div>
+            <div class="link">raphascounseling.com ↗</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- CODE — Steady -->
+      <div class="tile code" data-cat="code" style="--r:4/5">
+        <a href="https://github.com/Caden284/smart-study-tracker" target="_blank" rel="noopener" class="tile-inner">
+          <div class="code-head-tile">
+            <span class="dot-r" style="width:9px;height:9px;border-radius:999px;background:#EE6A5F;display:inline-block;"></span>
+            <span class="dot-y" style="width:9px;height:9px;border-radius:999px;background:#F5BE4F;display:inline-block;"></span>
+            <span class="dot-g" style="width:9px;height:9px;border-radius:999px;background:#61C554;display:inline-block;"></span>
+            <span class="file-tile">smart-study-tracker</span>
+          </div>
+          <div class="code-body-tile">
+            <div>
+              <div class="repo-title">Steady</div>
+              <div class="repo-desc">A smart study tracker that turns time-on-task into gentle, actionable insight.</div>
+            </div>
+            <div class="repo-meta">
+              <span class="lang">Code · GitHub</span>
+              <span class="link">View repo →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- PHOTO — 2 -->
+      <div class="tile" data-cat="photo" style="--r:2/3">
+        <div class="tile-inner">
+          <img src="port-photo-2.jpg" alt="Portrait — walking, headphones on" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography</div><div class="title">Sunlight, in stride.</div></div>
+        </div>
+      </div>
+
+      <!-- DESIGN — P2 Rebrand -->
+      <div class="tile design" data-cat="design" style="--r:5/6">
+        <a href="p2-rebrand.html" target="_blank" rel="noopener" class="tile-inner">
+          <div class="doc-mark">Brief · v1</div>
+          <div>
+            <div class="kicker">Design · Rebrand</div>
+            <div class="title">P2 Rebrand —<br/>E-Board Brief.</div>
+            <div class="body">A standalone brief for an organizational rebrand — visual system, positioning, and rollout, packaged as a single portable document.</div>
+          </div>
+          <div class="cta">Open the brief →</div>
+        </a>
+      </div>
+
+      <!-- CODE — Time Sync -->
+      <div class="tile code" data-cat="code" style="--r:4/5">
+        <a href="https://github.com/Caden284/TimeSync-Scheduling" target="_blank" rel="noopener" class="tile-inner">
+          <div class="code-head-tile">
+            <span class="dot-r" style="width:9px;height:9px;border-radius:999px;background:#EE6A5F;display:inline-block;"></span>
+            <span class="dot-y" style="width:9px;height:9px;border-radius:999px;background:#F5BE4F;display:inline-block;"></span>
+            <span class="dot-g" style="width:9px;height:9px;border-radius:999px;background:#61C554;display:inline-block;"></span>
+            <span class="file-tile">TimeSync-Scheduling</span>
+          </div>
+          <div class="code-body-tile">
+            <div>
+              <div class="repo-title">Time Sync</div>
+              <div class="repo-desc">A scheduling utility for coordinating shared calendars — built to reduce back-and-forth to zero.</div>
+            </div>
+            <div class="repo-meta">
+              <span class="lang">Code · GitHub</span>
+              <span class="link">View repo →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- PHOTO — 3 -->
+      <div class="tile" data-cat="photo" style="--r:3/4">
+        <div class="tile-inner">
+          <img src="port-photo-3.jpg" alt="Studio portrait — graduate, cap in hand" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography</div><div class="title">Cap, held.</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — 4 -->
+      <div class="tile" data-cat="photo" style="--r:2/3">
+        <div class="tile-inner">
+          <img src="port-photo-4.jpg" alt="Studio portrait — poised" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography</div><div class="title">Studio, still.</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTO — 5 -->
+      <div class="tile" data-cat="photo" style="--r:3/4">
+        <div class="tile-inner">
+          <img src="port-photo-5.jpg" alt="Portrait — red dress, staircase" loading="lazy" />
+          <div class="tile-info"><div class="kind">Photography</div><div class="title">The staircase.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <h3>Let's make something with <em>weight</em>.</h3>
+        <p>Currently taking a small number of design, development, and creative-direction projects. If you have a problem worth thinking clearly about, I'd love to hear it.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:hello@cadenfahie.com">Start a conversation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="dot"></span> Caden Fahie</div>
+        <p style="color:var(--slate-soft);margin-top:14px;max-width:320px;font-size:14px;">A student technologist and creative director. Two disciplines, one signature.</p>
+      </div>
+      <div><h5>Yin</h5><ul>
+        <li><a href="#">Resume</a></li><li><a href="#">Coursework</a></li><li><a href="#">Certifications</a></li><li><a href="#">Research</a></li>
+      </ul></div>
+      <div><h5>Yang</h5><ul>
+        <li><a href="#">Photography</a></li><li><a href="#">Videography</a></li><li><a href="#">Design</a></li><li><a href="#">Process</a></li>
+      </ul></div>
+      <div><h5>Connect</h5><ul>
+        <li><a href="mailto:hello@cadenfahie.com">Email</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">GitHub</a></li>
+      </ul></div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 Caden Fahie</span>
+      <span>Yin &amp; Yang · Balance in Practice</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      // animate skills when list enters
+      if(e.target.id==='skillsList'){
+        e.target.querySelectorAll('.skill').forEach((s,i)=>setTimeout(()=>s.classList.add('animate'), i*90));
+      }
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal, #skillsList').forEach(el=>io.observe(el));
+
+// Accordion
+document.querySelectorAll('.acc-head').forEach(h=>{
+  h.addEventListener('click',()=>{
+    const item = h.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(o=>o.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+// open first
+document.querySelector('.acc-item')?.classList.add('open');
+
+// Testimonial carousel
+const track = document.getElementById('tstTrack');
+document.getElementById('tstPrev').onclick = ()=>track.scrollBy({left:-480,behavior:'smooth'});
+document.getElementById('tstNext').onclick = ()=>track.scrollBy({left:480,behavior:'smooth'});
+
+// Portfolio filter
+document.querySelectorAll('.filter').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.tile').forEach(t=>{
+      t.style.display = (f==='all'||t.dataset.cat===f) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+</body>
+</html>
