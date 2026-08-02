@@ -481,6 +481,44 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.9,.3,1);}
 .reveal.in{opacity:1;transform:none;}
 
+/* ========== Kaizen philosophy section ========== */
+.kaizen-section{padding:120px 0;background:linear-gradient(180deg,var(--warm-white) 0,#F7F6F1 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.kaizen-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center;}
+.kaizen-mark{
+  position:relative;text-align:center;padding:40px;
+}
+.kaizen-mark .kanji{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(180px,26vw,320px);
+  line-height:1;color:var(--navy);letter-spacing:-.04em;font-weight:500;
+  display:block;
+  transition:transform 1.2s cubic-bezier(.2,.9,.3,1);
+}
+.kaizen-mark:hover .kanji{transform:scale(1.03);}
+.kaizen-mark .kaizen-caption{
+  font-family:var(--yin-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--slate-soft);margin-top:24px;
+}
+.kaizen-mark::before,.kaizen-mark::after{
+  content:"";position:absolute;border-radius:50%;pointer-events:none;
+  border:1px dashed rgba(30,58,95,.08);
+}
+.kaizen-mark::before{inset:0;animation:rotate 60s linear infinite;}
+.kaizen-mark::after{inset:-40px;border-color:rgba(143,169,142,.15);animation:rotateRev 90s linear infinite;}
+.kaizen-copy .eyebrow{color:var(--sage);}
+.kaizen-copy h2{
+  font-family:var(--yin-serif);font-size:clamp(32px,4vw,48px);font-weight:500;
+  color:var(--navy);letter-spacing:-.02em;line-height:1.05;margin:14px 0 22px;
+}
+.kaizen-copy h2 em{font-family:var(--yang-serif);font-style:italic;color:var(--slate);font-weight:400;}
+.kaizen-copy p{color:var(--slate);font-size:17px;margin-bottom:14px;max-width:520px;}
+.kaizen-copy .kaizen-tie{
+  font-family:var(--yang-serif);font-style:italic;
+  font-size:22px;color:var(--navy);margin-top:22px;
+  padding-left:16px;border-left:2px solid var(--sage);max-width:480px;
+}
+@media (max-width:820px){ .kaizen-section{padding:80px 0;} .kaizen-grid{grid-template-columns:1fr;gap:40px;} .kaizen-mark{padding:20px;} }
+
 /* ========== Social icon buttons ========== */
 .socials{display:inline-flex;align-items:center;gap:2px;}
 .socials a{
@@ -526,6 +564,59 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 /* ========== Focus visible — accessible tactile ring ========== */
 a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:6px;}
 
+/* ========== Dark mode toggle button ========== */
+.theme-toggle{
+  width:34px;height:34px;border-radius:999px;border:1px solid var(--line);
+  background:var(--warm-white);color:var(--slate);display:grid;place-items:center;
+  transition:.25s cubic-bezier(.2,.9,.3,1.2);cursor:pointer;
+}
+.theme-toggle:hover{background:var(--light-gray);color:var(--navy);border-color:var(--navy);transform:translateY(-1px);}
+.theme-toggle:active{transform:translateY(0) scale(.94);}
+.theme-toggle svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.theme-toggle .sun{display:none;}
+[data-theme="dark"] .theme-toggle .moon{display:none;}
+[data-theme="dark"] .theme-toggle .sun{display:block;}
+
+/* ========== Dark mode palette ========== */
+[data-theme="dark"]{
+  --warm-white:#0F1720;
+  --light-gray:#161F2A;
+  --mist:#1A2432;
+  --slate:#C4CBD6;
+  --slate-soft:#8B95A5;
+  --navy:#E8ECF3;
+  --navy-deep:#F5F7FB;
+  --ink:#F5F7FB;
+  --line:rgba(255,255,255,.08);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.2);
+  --shadow:0 8px 24px rgba(0,0,0,.35);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+}
+[data-theme="dark"] body{background:#0F1720;}
+[data-theme="dark"] .brand .dot{background:conic-gradient(from 0deg,#E8ECF3 0 50%,#0F1720 0 100%);}
+[data-theme="dark"] .brand .dot::after{background:radial-gradient(circle at 50% 25%,#0F1720 4px,transparent 5px),radial-gradient(circle at 50% 75%,#E8ECF3 4px,transparent 5px);}
+[data-theme="dark"] .nav{background:rgba(15,23,32,.75);border-color:rgba(255,255,255,.08);}
+[data-theme="dark"] .btn-primary{background:var(--sage);color:#0F1720;}
+[data-theme="dark"] .btn-primary:hover{background:var(--sage-soft);}
+[data-theme="dark"] .btn-ghost{border-color:rgba(255,255,255,.15);color:var(--navy);background:transparent;}
+[data-theme="dark"] .pill.solid{background:var(--sage);color:#0F1720;border-color:var(--sage);}
+[data-theme="dark"] .card,[data-theme="dark"] .tst-card,[data-theme="dark"] .acc-item,[data-theme="dark"] .about-intro .id-card{background:#161F2A;border-color:rgba(255,255,255,.06);}
+[data-theme="dark"] .acc-item.open .acc-head{background:#1A2432;}
+[data-theme="dark"] .acc-fact{background:#0F1720;}
+[data-theme="dark"] .kaizen-section{background:linear-gradient(180deg,#0F1720 0,#131C26 100%);border-color:rgba(255,255,255,.06);}
+[data-theme="dark"] .kaizen-mark .kanji{color:var(--sage-soft);}
+[data-theme="dark"] .cta{background:radial-gradient(60% 100% at 90% 0%, rgba(143,169,142,.22) 0, transparent 60%),radial-gradient(60% 100% at 0% 100%, rgba(122,148,178,.28) 0, transparent 60%),#0A121B;}
+[data-theme="dark"] .cta .btn-primary{background:var(--warm-white);color:#0F1720;}
+[data-theme="dark"] .code-card,[data-theme="dark"] .about-intro .portrait{border-color:rgba(255,255,255,.08);}
+[data-theme="dark"] .story-img,[data-theme="dark"] .tile{background:#161F2A;}
+[data-theme="dark"] section[style*="background:var(--light-gray)"]{background:#131C26 !important;}
+[data-theme="dark"] .filter{color:var(--slate);border-color:rgba(255,255,255,.1);}
+[data-theme="dark"] .filter.on{background:var(--sage);color:#0F1720;border-color:var(--sage);}
+[data-theme="dark"] .tst-btn:hover,[data-theme="dark"] .pill:hover{background:var(--sage);color:#0F1720;border-color:var(--sage);}
+[data-theme="dark"] .tst-avatar{background:#0F1720;border-color:rgba(255,255,255,.1);}
+[data-theme="dark"] .tst-avatar img{filter:invert(1);}
+[data-theme="dark"] .scroll-bar span{background:linear-gradient(90deg,var(--sage-soft),var(--muted-blue-soft));}
+
 /* Prefers reduced motion */
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
@@ -565,8 +656,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
         <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
       </a>
     </div>
-    <a class="pill" href="#yin">Yin</a>
-    <a class="pill solid" href="#yang">Yang</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <a class="pill" href="yin.html">Yin</a>
+    <a class="pill solid" href="yang.html">Yang</a>
   </div>
 </nav>
 
@@ -576,10 +671,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
     <div class="hero-left reveal">
       <span class="eyebrow">Portfolio · Est. 2026</span>
       <h1>Two sides.<br/>One <em>signal.</em></h1>
-      <p class="hero-sub">I'm Caden Fahie — a student technologist and creative director. I build precise, accessible software and craft calm, cinematic visuals. Yin and yang, working in balance.</p>
+      <p class="hero-sub">I'm Caden Fahie — a dual BS/MS Computer Science & Cybersecurity student at Georgia State, a creative director, and a youth advocate. From the British Virgin Islands to Atlanta, my work lives on the seam between engineering, leadership, and craft.</p>
       <div class="hero-meta">
-        <span>Available for select projects</span>
-        <span>Based in the U.S.</span>
+        <span>Now — GSU · P2 PR · Mentora v1</span>
+        <span>Atlanta &middot; British Virgin Islands</span>
       </div>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#portfolio">Explore My Work <span class="arrow">→</span></a>
@@ -637,30 +732,49 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
 <section class="section">
   <div class="container">
     <div class="split reveal">
-      <a id="yin" class="side yin" href="#services">
-        <span class="side-tag">01 — Yin</span>
-        <h2>The Engineer.<br/>The Leader.</h2>
-        <p>Systematic thinking, technical depth, and civic responsibility. The half that ships, tests, and stands up for people.</p>
+      <a id="yin" class="side yin" href="yin.html">
+        <span class="side-tag">01 — Yin · The Discipline</span>
+        <h2>The Engineer.<br/>The Leader.<br/>The Advocate.</h2>
+        <p>Systematic thinking, technical depth, civic responsibility. The half that studies CS &amp; Cybersecurity at GSU, ships software, and represents the BVI on international stages.</p>
         <ul>
-          <li>› Full-stack development</li>
-          <li>› IT & infrastructure</li>
-          <li>› Student government & advocacy</li>
-          <li>› Environmental leadership</li>
+          <li>› Full-stack development · System-level programming</li>
+          <li>› IT support · Cybersecurity fundamentals</li>
+          <li>› Student government · Mentorship · LE360</li>
+          <li>› UNICEF · UKOTPA · Mental-health advocacy</li>
         </ul>
         <span class="go">Enter the Yin page →</span>
       </a>
-      <a id="yang" class="side yang" href="#portfolio">
-        <span class="side-tag">02 — Yang</span>
-        <h2>The Artist.<br/>The Storyteller.</h2>
-        <p>Composition, light, rhythm, restraint. The half that sees a moment and turns it into a memory.</p>
+      <a id="yang" class="side yang" href="yang.html">
+        <span class="side-tag">02 — Yang · The Expression</span>
+        <h2>The Artist.<br/>The Storyteller.<br/>The Director.</h2>
+        <p>Composition, light, rhythm, restraint. The half that leads P2's rebrand, manages Gems De La Rosa's socials, and treats a portrait as a form of paying attention.</p>
         <ul>
           <li>· Photography &amp; videography</li>
-          <li>· Brand &amp; graphic design</li>
-          <li>· Creative direction</li>
-          <li>· Digital storytelling</li>
+          <li>· Brand strategy &amp; graphic design</li>
+          <li>· Creative direction · Social media</li>
+          <li>· Web design (Rapha's, Gems De La Rosa)</li>
         </ul>
         <span class="go">Enter the Yang page →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- KAIZEN — the word underneath both halves -->
+<section class="kaizen-section" id="kaizen">
+  <div class="container">
+    <div class="kaizen-grid reveal">
+      <div class="kaizen-mark" aria-hidden="true">
+        <span class="kanji" lang="ja">改善</span>
+        <div class="kaizen-caption">改善 · Kaizen · Continuous Improvement</div>
+      </div>
+      <div class="kaizen-copy">
+        <span class="eyebrow">Philosophy</span>
+        <h2>The word underneath both halves — <em>kaizen.</em></h2>
+        <p>Kaizen (改善) — literally "change for the better" — is the Japanese practice of continuous, incremental improvement. Small. Consistent. Considered.</p>
+        <p>It's the name I use across every corner of the internet — <strong>kaizen_284</strong> on Instagram, <strong>kaizen284</strong> on LinkedIn, <strong>@Kaizen_284</strong> on YouTube — because it's the belief that ties both sides of this site together. Engineering improves through iteration. Art improves through iteration. So does the person doing either.</p>
+        <p class="kaizen-tie">Yin and yang is the shape. Kaizen is the practice.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -673,7 +787,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
         <span class="eyebrow">About</span>
         <h2 class="section-title">A single story, told in two languages.</h2>
         <p class="section-sub">Told less in paragraphs, more in frames. Scroll through the moments that shape how I think and make.</p>
-        <p style="margin-top:22px;color:var(--slate);max-width:520px;font-size:16px;">I'm a student technologist and creative director working at the intersection of engineering, leadership, and visual craft. What you'll see below are the moments that continue to shape both halves of the practice.</p>
+        <p style="margin-top:22px;color:var(--slate);max-width:520px;font-size:16px;">I grew up in the British Virgin Islands and I'm currently in Atlanta pursuing a Dual BS/MS in Computer Science &amp; Cybersecurity at Georgia State, while working as a User Services Technician on campus and holding leadership roles across student government, mentorship, and international youth advocacy. The scenes below are the moments that continue to shape both halves of the practice.</p>
       </div>
       <div class="portrait">
         <img src="headshot.jpg" alt="Portrait of Caden Fahie" loading="eager" />
@@ -692,7 +806,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
         <div class="story-text">
           <span class="eyebrow">01 — The Terminal</span>
           <h3>Building things that behave the way people expect.</h3>
-          <p>My first love was the quiet certainty of code — the discipline of naming, structuring, and shipping. I study CS with a focus on interface design and infrastructure that stays out of the user's way.</p>
+          <p>My work as a User Services Technician at GSU (promoted in my first year to help hire and onboard the next student cohort) sits alongside personal projects like <strong>Stitch Vault</strong>, a full-stack CRM for small tailoring businesses that integrates the ChatGPT API to cut manual data entry — and <strong>Rapha's Counseling Center</strong>, a live booking site built on the Wix API.</p>
         </div>
       </div>
       <div class="story-row reverse reveal">
@@ -700,24 +814,32 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
         <div class="story-text">
           <span class="eyebrow">02 — The Room</span>
           <h3>Leadership as a design practice.</h3>
-          <p>From student government to environmental initiatives, I've learned that leading is largely about listening well and reducing friction so a group can do its best work.</p>
+          <p>Vice Chair of Student Services in GSU's Student Government Association. Secretary of Collegiate 100. PR &amp; Social Media Chair for P2, the university's premier mentorship program and step team. LE360 Leadership Fellow — Spring 2026 cohort. Different rooms, one lesson: leading is mostly listening well and reducing friction so a group can do its best work.</p>
           <p class="quote">"Structure is a form of care."</p>
         </div>
       </div>
       <div class="story-row reveal">
-        <div class="story-img"><img src="story-sustain.jpg" alt="Sustainability and community engagement" loading="lazy" /><span class="tag">Sustainability</span></div>
+        <div class="story-img"><img src="story-sustain.jpg" alt="Sustainability and community engagement" loading="lazy" /><span class="tag">Advocacy</span></div>
         <div class="story-text">
           <span class="eyebrow">03 — The Field</span>
-          <h3>A responsibility to the systems around us.</h3>
-          <p>I organize around sustainability and campus advocacy because the same systems thinking that improves an interface can improve a community.</p>
+          <h3>Youth advocacy on an international stage.</h3>
+          <p>UNICEF Delegate at the Small Island Developing States Conference, contributing to the Agri-Wave project. BVI Youth Delegate to the UKOTPA Summit in the UK, presenting on coral bleaching, unemployment, and youth empowerment. Mental Health Focal Point trained through BVI LUI × UNICEF in Barbados. 200+ volunteer hours through mentoring and food-bank work in Atlanta. Systems thinking scales.</p>
         </div>
       </div>
       <div class="story-row reverse reveal">
         <div class="story-img"><img src="story-creative.jpg" alt="Behind the scenes of creative work" loading="lazy" /><span class="tag">Creative</span></div>
         <div class="story-text">
           <span class="eyebrow">04 — The Frame</span>
-          <h3>Photography as a way of paying attention.</h3>
-          <p>When I put down the keyboard I pick up a camera. Light on a face, a hand in motion, a room settling into evening — the visual work keeps the technical work honest.</p>
+          <h3>Design and imagery as a way of paying attention.</h3>
+          <p>Currently leading a full organizational rebrand for P2 (@p2_gsu, 910+ followers) — visual identity, content strategy, digital presence. Social Media Manager for Gems De La Rosa (2,000+ engagements in the first month). When I put down the keyboard I pick up a camera. The visual work keeps the technical work honest.</p>
+        </div>
+      </div>
+      <div class="story-row reveal">
+        <div class="story-img"><img src="port-photo-2.jpg" alt="Where the story starts — the British Virgin Islands" loading="lazy" /><span class="tag">Origin · BVI</span></div>
+        <div class="story-text">
+          <span class="eyebrow">05 — The Islands</span>
+          <h3>Where the story starts — <em style="font-family:var(--yang-serif);font-style:italic;color:var(--slate);">the British Virgin Islands.</em></h3>
+          <p>I grew up in the BVI, earned an Associate of Science in Computer Science and a Certificate in Business Administration at H. Lavity Stoutt Community College, and represented the islands as a youth delegate to Parliaments and Prime Ministers in the UK. The pace, the light, the sea, and the sense of scale that comes with a small place — all of it still shapes how I read a room and how I frame a shot.</p>
         </div>
       </div>
     </div>
@@ -827,24 +949,31 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
     <div class="reveal">
       <span class="eyebrow">Technical Development</span>
       <h2 class="section-title">A working knowledge, honestly rated.</h2>
-      <p class="section-sub">Progress reflects how comfortable I am shipping production work in each stack — not certificates on a shelf.</p>
+      <p class="section-sub">Progress reflects how comfortable I am shipping production work in each stack — grounded in coursework at GSU (Dual BS/MS · CS &amp; Cybersecurity) and on-the-job at User Services.</p>
       <div class="stack-tags">
-        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Wix Studio</span>
-        <span>C++</span><span>Java</span><span>Python</span><span>Git &amp; GitHub</span>
-        <span>UI/UX Design</span><span>Cybersecurity</span><span>IT Infrastructure</span>
-        <span>AI Tools &amp; Prompting</span>
+        <span>Python</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>SQL</span>
+        <span>Wix Studio &amp; API</span><span>ChatGPT API</span><span>Git &amp; GitHub</span><span>VS Code</span>
+        <span>UI/UX Design</span><span>Wireframing</span><span>Data Structures</span>
+        <span>System-Level Programming</span><span>Cybersecurity</span><span>IT Support</span>
+      </div>
+      <div class="stack-tags" style="margin-top:16px;">
+        <span style="background:var(--sage-soft);color:var(--navy);border-color:transparent;">Certified · Python (IBM)</span>
+        <span style="background:var(--sage-soft);color:var(--navy);border-color:transparent;">Certified · Project Management (Google)</span>
+        <span style="background:var(--sage-soft);color:var(--navy);border-color:transparent;">Certified · UX Design</span>
+        <span style="background:var(--sage-soft);color:var(--navy);border-color:transparent;">Certified · HTML/CSS/SQL</span>
+        <span style="background:var(--muted-blue-soft);color:var(--navy);border-color:transparent;">In progress · Data Analytics</span>
       </div>
     </div>
     <div class="skills-list reveal" id="skillsList">
       <div class="skill" style="--pct:.92"><span class="name">HTML / CSS</span><span class="bar"><span></span></span><span class="pct">92%</span></div>
       <div class="skill" style="--pct:.86"><span class="name">JavaScript</span><span class="bar"><span></span></span><span class="pct">86%</span></div>
-      <div class="skill" style="--pct:.78"><span class="name">React</span><span class="bar"><span></span></span><span class="pct">78%</span></div>
       <div class="skill" style="--pct:.90"><span class="name">Wix Studio</span><span class="bar"><span></span></span><span class="pct">90%</span></div>
-      <div class="skill" style="--pct:.72"><span class="name">Python</span><span class="bar"><span></span></span><span class="pct">72%</span></div>
-      <div class="skill" style="--pct:.68"><span class="name">C++ / Java</span><span class="bar"><span></span></span><span class="pct">68%</span></div>
+      <div class="skill" style="--pct:.78"><span class="name">Python</span><span class="bar"><span></span></span><span class="pct">78%</span></div>
+      <div class="skill" style="--pct:.74"><span class="name">SQL</span><span class="bar"><span></span></span><span class="pct">74%</span></div>
       <div class="skill" style="--pct:.84"><span class="name">UI / UX</span><span class="bar"><span></span></span><span class="pct">84%</span></div>
-      <div class="skill" style="--pct:.75"><span class="name">Cybersecurity</span><span class="bar"><span></span></span><span class="pct">75%</span></div>
-      <div class="skill" style="--pct:.88"><span class="name">AI Tools</span><span class="bar"><span></span></span><span class="pct">88%</span></div>
+      <div class="skill" style="--pct:.88"><span class="name">AI Tools · Prompting</span><span class="bar"><span></span></span><span class="pct">88%</span></div>
+      <div class="skill" style="--pct:.80"><span class="name">Cybersecurity</span><span class="bar"><span></span></span><span class="pct">80%</span></div>
+      <div class="skill" style="--pct:.85"><span class="name">IT Support</span><span class="bar"><span></span></span><span class="pct">85%</span></div>
     </div>
   </div>
 </section>
@@ -861,75 +990,159 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
       <div class="acc-item">
         <div class="acc-head">
           <span class="acc-num">01</span>
-          <span class="acc-title">Student Government Association</span>
-          <span class="acc-role">Elected Representative</span>
+          <span class="acc-title">Student Government Association — Georgia State University</span>
+          <span class="acc-role">Vice Chair of Student Services</span>
           <span class="acc-toggle">+</span>
         </div>
         <div class="acc-body"><div class="acc-inner">
-          <p>Advocated for student needs across academics, policy, and campus life. Co-authored two initiatives on transparent budget reporting and student mental-health access.</p>
+          <p>Represent student interests in the Student Services division, collaborating with university administration to improve access to wellness, housing, and academic support. Lead cross-functional initiatives that address campus-wide concerns raised by the student body.</p>
           <div class="acc-facts">
-            <div class="acc-fact"><div class="k">Impact</div><div class="v">2 policy proposals adopted</div></div>
-            <div class="acc-fact"><div class="k">Skills</div><div class="v">Public speaking · Coalition building</div></div>
+            <div class="acc-fact"><div class="k">Since</div><div class="v">January 2026 — Present</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Public speaking · Coalition building · Policy</div></div>
           </div>
         </div></div>
       </div>
+
       <div class="acc-item">
         <div class="acc-head">
           <span class="acc-num">02</span>
-          <span class="acc-title">Environmental &amp; Sustainability Initiatives</span>
-          <span class="acc-role">Organizer</span>
+          <span class="acc-title">Peerless Perfexion (P2) — Georgia State University</span>
+          <span class="acc-role">PR &amp; Social Media Chair</span>
           <span class="acc-toggle">+</span>
         </div>
         <div class="acc-body"><div class="acc-inner">
-          <p>Helped launch and run campus programs focused on waste reduction, renewable literacy, and outdoor stewardship. Built partnerships with local nonprofits.</p>
+          <p>Lead all PR and social media strategy for GSU's premier mentorship program and step team — currently executing a full organizational rebrand across visual identity, content strategy, and digital presence to align with P2's mission of brotherhood and mentorship. <strong>@p2_gsu, 910+ followers.</strong></p>
           <div class="acc-facts">
-            <div class="acc-fact"><div class="k">Impact</div><div class="v">300+ students engaged</div></div>
-            <div class="acc-fact"><div class="k">Skills</div><div class="v">Program design · Volunteer ops</div></div>
+            <div class="acc-fact"><div class="k">Since</div><div class="v">March 2026 — Present</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Brand strategy · Content design · Rebrand</div></div>
           </div>
         </div></div>
       </div>
+
       <div class="acc-item">
         <div class="acc-head">
           <span class="acc-num">03</span>
-          <span class="acc-title">Community Organizations</span>
-          <span class="acc-role">Volunteer Lead</span>
+          <span class="acc-title">Collegiate 100 — Affiliated with 100 Black Men of America</span>
+          <span class="acc-role">Secretary</span>
           <span class="acc-toggle">+</span>
         </div>
         <div class="acc-body"><div class="acc-inner">
-          <p>Coordinated logistics and creative assets for community-facing events. Designed print collateral, ran run-of-show, captured coverage photography.</p>
+          <p>Serve as Secretary for a chapter committed to mentorship, scholarship, and community within the African American community. Manage organizational records, coordinate meeting logistics, and support programming aligned with the national mission of Emerging 100 and 100 Black Men of America.</p>
           <div class="acc-facts">
-            <div class="acc-fact"><div class="k">Impact</div><div class="v">12 events supported</div></div>
-            <div class="acc-fact"><div class="k">Skills</div><div class="v">Event production · Design</div></div>
+            <div class="acc-fact"><div class="k">Since</div><div class="v">November 2025 — Present</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Operations · Mentorship · Communication</div></div>
           </div>
         </div></div>
       </div>
+
       <div class="acc-item">
         <div class="acc-head">
           <span class="acc-num">04</span>
-          <span class="acc-title">University Leadership</span>
-          <span class="acc-role">Committee Member</span>
+          <span class="acc-title">Leaders Engage 360 (LE360) — GSU Office of Leadership &amp; Service</span>
+          <span class="acc-role">Leadership Fellow</span>
           <span class="acc-toggle">+</span>
         </div>
         <div class="acc-body"><div class="acc-inner">
-          <p>Serve on cross-functional committees bridging students, faculty, and staff. Focus on tech literacy, digital accessibility, and student communication tools.</p>
+          <p>Completed an intensive eight-week leadership fellowship for high-achieving juniors and seniors — focused on authentic leadership, intercultural awareness, strategic thinking, and professional branding. Led the <em>Mind Your Panther</em> capstone project presented to GSU senior administrative leaders, revealing that <strong>61% of students surveyed didn't know GSU's counseling resources existed</strong>, and proposed three low-barrier fixes to close the awareness gap.</p>
           <div class="acc-facts">
-            <div class="acc-fact"><div class="k">Impact</div><div class="v">Faculty-student comms redesign</div></div>
-            <div class="acc-fact"><div class="k">Skills</div><div class="v">Facilitation · Systems thinking</div></div>
+            <div class="acc-fact"><div class="k">When</div><div class="v">Spring 2026 · Fellow distinction earned</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Strategy · Research · Presentation</div></div>
           </div>
         </div></div>
       </div>
+
       <div class="acc-item">
         <div class="acc-head">
           <span class="acc-num">05</span>
-          <span class="acc-title">Campus Advocacy Projects</span>
-          <span class="acc-role">Contributor</span>
+          <span class="acc-title">UNICEF — Small Island Developing States Conference</span>
+          <span class="acc-role">UNICEF Delegate</span>
           <span class="acc-toggle">+</span>
         </div>
         <div class="acc-body"><div class="acc-inner">
-          <p>Contribute writing, design, and strategy to advocacy campaigns on equity, mental health, and student safety. Combine research, empathy, and clear visual language.</p>
+          <p>Represented Caribbean countries in formal presentations to international stakeholders, advocating for youth-driven policy solutions. Played a pivotal role in developing the <em>Agri-Wave</em> project, showcased at the SIDS conference.</p>
           <div class="acc-facts">
-            <div class="acc-fact"><div class="k">Impact</div><div class="v">3 campaigns delivered</div></div>
-            <div class="acc-fact"><div class="k">Skills</div><div class="v">Copywriting · Visual identity</div></div>
+            <div class="acc-fact"><div class="k">When</div><div class="v">May 2024 · International</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Policy · Storytelling · Advocacy</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">06</span>
+          <span class="acc-title">UKOTPA Youth Summit — British Virgin Islands Delegate</span>
+          <span class="acc-role">Youth Delegate · BVI</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Traveled to the United Kingdom to represent the BVI at the UK Overseas Territories Parliaments &amp; Associations Youth Summit — delivering a formal presentation on coral bleaching, unemployment, and youth empowerment. Elevated the issues to Prime Ministers and Governors, initiating <strong>a five-year commitment</strong> to address them.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">When</div><div class="v">November 2023 · United Kingdom</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Public speaking · Diplomacy · Environmental policy</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">07</span>
+          <span class="acc-title">BVI LUI × UNICEF — Mental Health Advocacy</span>
+          <span class="acc-role">Mental Health Focal Point</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Completed specialized mental health advocacy training in Barbados and implemented the learnings locally by leading a community mental health seminar in collaboration with the BVI Interact Club.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">When</div><div class="v">November 2023 · Barbados / BVI</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Mental health advocacy · Facilitation</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">08</span>
+          <span class="acc-title">Georgia State University — User Services</span>
+          <span class="acc-role">Technician (Promoted)</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Deliver direct technical support to students — diagnosing hardware, software, and network issues across campus. Optimized the room reservation system, reducing scheduling conflicts. Promoted to assist in hiring and onboarding new student employees.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Since</div><div class="v">October 2024 — Present</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Diagnostics · Systems · Hiring &amp; onboarding</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">09</span>
+          <span class="acc-title">University Tech &amp; Library Advisory</span>
+          <span class="acc-role">Advisor</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Serve on cross-functional committees at GSU bridging students, faculty, and staff on tech literacy, digital accessibility, and library resource design — pushing decisions toward what students will actually use.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Since</div><div class="v">Tech: September 2025 · Library: November 2025</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Facilitation · UX advocacy · Systems thinking</div></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-head">
+          <span class="acc-num">10</span>
+          <span class="acc-title">Atlanta Community Food Bank &amp; Mentoring</span>
+          <span class="acc-role">Volunteer</span>
+          <span class="acc-toggle">+</span>
+        </div>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Accumulated <strong>200+ volunteer hours</strong> across student mentoring programs and food bank operations. Provide academic support to underserved youth and coordinate logistics for food distribution serving Atlanta-area families.</p>
+          <div class="acc-facts">
+            <div class="acc-fact"><div class="k">Since</div><div class="v">October 2025 — Present</div></div>
+            <div class="acc-fact"><div class="k">Skills</div><div class="v">Mentorship · Logistics · Community outreach</div></div>
           </div>
         </div></div>
       </div>
@@ -949,34 +1162,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
       <div class="tst-track" id="tstTrack">
         <article class="tst-card">
           <span class="tst-mark">"</span>
-          <p class="tst-quote">Caden reads a project like a room — quietly and completely. By the time he starts building, half the problem is already solved.</p>
+          <p class="tst-quote">Working with Caden at the International Youth Advocate Summit was a masterclass in strategic storytelling. He has a unique gift for translating complex data into impactful human narratives.</p>
           <div class="tst-person">
             <div class="tst-avatar"><img src="avatar-1.svg" alt="" /></div>
-            <div><div class="tst-name">Dr. M. Ramírez</div><div class="tst-role">Professor · Computer Science</div></div>
+            <div><div class="tst-name">Senior Delegate</div><div class="tst-role">UNICEF · SIDS Summit</div></div>
           </div>
         </article>
         <article class="tst-card">
           <span class="tst-mark">"</span>
-          <p class="tst-quote">Rare mix of technical rigor and visual taste. He'll ship a system and then hand you a portrait that makes the team feel seen.</p>
+          <p class="tst-quote">Caden has a way of taking the words out of your mouth and producing a product that you didn't even know you needed.</p>
           <div class="tst-person">
             <div class="tst-avatar"><img src="avatar-2.svg" alt="" /></div>
-            <div><div class="tst-name">Jordan Tran</div><div class="tst-role">Founder · Studio Practice</div></div>
+            <div><div class="tst-name">Owner</div><div class="tst-role">Rapha's Counseling Center</div></div>
           </div>
         </article>
         <article class="tst-card">
           <span class="tst-mark">"</span>
-          <p class="tst-quote">He leads by lowering the temperature of a room. People say more, decisions come out better, work ships faster.</p>
+          <p class="tst-quote">Caden goes above and beyond with the tasks he is given on a day-to-day basis.</p>
           <div class="tst-person">
             <div class="tst-avatar"><img src="avatar-3.svg" alt="" /></div>
-            <div><div class="tst-name">Sofia Chen</div><div class="tst-role">Student Body Advisor</div></div>
-          </div>
-        </article>
-        <article class="tst-card">
-          <span class="tst-mark">"</span>
-          <p class="tst-quote">Every asset Caden delivered fit the brand and the moment. He also over-delivered on quiet things — captions, alt text, file naming.</p>
-          <div class="tst-person">
-            <div class="tst-avatar"><img src="avatar-4.svg" alt="" /></div>
-            <div><div class="tst-name">Alex Vega</div><div class="tst-role">Client · Nonprofit Program Lead</div></div>
+            <div><div class="tst-name">Department Head</div><div class="tst-role">User Services · Georgia State University</div></div>
           </div>
         </article>
       </div>
@@ -1227,13 +1432,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
     <div class="footer-grid">
       <div>
         <div class="brand"><span class="dot"></span> Caden Fahie</div>
-        <p style="color:var(--slate-soft);margin-top:14px;max-width:320px;font-size:14px;">A student technologist and creative director. Two disciplines, one signature.</p>
+        <p style="color:var(--slate-soft);margin-top:14px;max-width:340px;font-size:14px;">Student technologist, creative director, and youth advocate. Rooted in the British Virgin Islands. Currently in Atlanta at Georgia State. Two disciplines, one signature — <em style="font-family:var(--yang-serif);font-style:italic;">kaizen.</em></p>
       </div>
       <div><h5>Yin</h5><ul>
-        <li><a href="#">Resume</a></li><li><a href="#">Coursework</a></li><li><a href="#">Certifications</a></li><li><a href="#">Research</a></li>
+        <li><a href="yin.html">Enter Yin page</a></li>
+        <li><a href="resume-tech.pdf" target="_blank" rel="noopener">Tech resume (PDF)</a></li>
+        <li><a href="resume-leadership.pdf" target="_blank" rel="noopener">Leadership resume (PDF)</a></li>
+        <li><a href="https://github.com/Caden284" target="_blank" rel="noopener">GitHub projects</a></li>
       </ul></div>
       <div><h5>Yang</h5><ul>
-        <li><a href="#">Photography</a></li><li><a href="#">Videography</a></li><li><a href="#">Design</a></li><li><a href="#">Process</a></li>
+        <li><a href="yang.html">Enter Yang page</a></li>
+        <li><a href="#portfolio">Photography</a></li>
+        <li><a href="p2-social.html" target="_blank" rel="noopener">P2 Social 2.0</a></li>
+        <li><a href="https://www.gemsdelarosa.com/" target="_blank" rel="noopener">Gems De La Rosa</a></li>
       </ul></div>
       <div><h5>Connect</h5><ul>
         <li><a href="mailto:fahiecaden@gmail.com">Email</a></li>
@@ -1260,13 +1471,27 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
       </div>
     </div>
     <div class="copyright">
-      <span>© 2026 Caden Fahie</span>
-      <span>Yin &amp; Yang · Balance in Practice</span>
+      <span>© 2026 Caden Fahie · Made between Atlanta &amp; the BVI 🇻🇬</span>
+      <span>改善 · Yin &amp; Yang · Balance in Practice</span>
     </div>
   </div>
 </footer>
 
 <script>
+// Dark mode toggle — persists in localStorage
+(function(){
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = stored || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', initial);
+})();
+document.getElementById('themeToggle')?.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
 // Scroll progress bar + nav elevation
 const scrollBar = document.getElementById('scrollBar');
 const nav = document.getElementById('nav');
