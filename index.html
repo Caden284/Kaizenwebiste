@@ -606,7 +606,38 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
 [data-theme="dark"] .kaizen-section{background:linear-gradient(180deg,#0F1720 0,#131C26 100%);border-color:rgba(255,255,255,.06);}
 [data-theme="dark"] .kaizen-mark .kanji{color:var(--sage-soft);}
 [data-theme="dark"] .cta{background:radial-gradient(60% 100% at 90% 0%, rgba(143,169,142,.22) 0, transparent 60%),radial-gradient(60% 100% at 0% 100%, rgba(122,148,178,.28) 0, transparent 60%),#0A121B;}
-[data-theme="dark"] .cta .btn-primary{background:var(--warm-white);color:#0F1720;}
+[data-theme="dark"] .cta .btn-primary{background:#FAFAF8;color:#0F1720;}
+[data-theme="dark"] .cta .btn-primary:hover{background:var(--sage-soft);}
+
+/* Dark-mode fixes for elements that live on hardcoded dark backgrounds
+   (their text must stay light regardless of theme) */
+[data-theme="dark"] .cta h3,
+[data-theme="dark"] .cta p,
+[data-theme="dark"] .tile.design .title,
+[data-theme="dark"] .tile.design .cta,
+[data-theme="dark"] .tile.design .kicker,
+[data-theme="dark"] .tile.design .body,
+[data-theme="dark"] .tile.design .doc-mark,
+[data-theme="dark"] .tile.code .repo-title,
+[data-theme="dark"] .tile.code .repo-desc,
+[data-theme="dark"] .tile.code .link,
+[data-theme="dark"] .tile.code .lang,
+[data-theme="dark"] .tile.code .file-tile{
+  color:inherit;
+}
+[data-theme="dark"] .tile.design .title,
+[data-theme="dark"] .cta h3{color:#FAFAF8 !important;}
+[data-theme="dark"] .tile.design .cta,
+[data-theme="dark"] .tile.design .body,
+[data-theme="dark"] .cta p{color:rgba(250,250,248,.82) !important;}
+[data-theme="dark"] .tile.design .kicker{color:#B7C9B4 !important;}
+[data-theme="dark"] .tile.design .doc-mark{color:rgba(255,255,255,.4) !important;border-color:rgba(255,255,255,.18) !important;}
+[data-theme="dark"] .tile.code .repo-title{color:#FAFAF8 !important;}
+[data-theme="dark"] .tile.code .repo-desc{color:#B8C1CE !important;}
+[data-theme="dark"] .tile.code .lang{color:#B8C1CE !important;}
+[data-theme="dark"] .tile.code .link{color:#B7C9B4 !important;}
+[data-theme="dark"] .tile.code:hover .link{color:#FAFAF8 !important;}
+[data-theme="dark"] .tile.code .file-tile{color:#8B95A5 !important;}
 [data-theme="dark"] .code-card,[data-theme="dark"] .about-intro .portrait{border-color:rgba(255,255,255,.08);}
 [data-theme="dark"] .story-img,[data-theme="dark"] .tile{background:#161F2A;}
 [data-theme="dark"] section[style*="background:var(--light-gray)"]{background:#131C26 !important;}
@@ -639,7 +670,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
     <a href="#portfolio">Work</a>
     <a href="yin.html">Yin</a>
     <a href="yang.html">Yang</a>
-    <a href="#contact">Contact</a>
+    <a href="contact.html">Contact</a>
   </div>
   <div class="nav-cta">
     <div class="socials" aria-label="Social links">
@@ -1251,12 +1282,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offse
 <!-- CTA -->
 <section class="section-tight">
   <div class="container">
-    <div class="cta reveal">
+    <div class="cta reveal" id="contact">
       <div>
-        <h3>Let's make something with <em>weight</em>.</h3>
-        <p>Currently taking a small number of design, development, and creative-direction projects. If you have a problem worth thinking clearly about, I'd love to hear it.</p>
+        <h3>Small, considered, <em>iterative</em>. That's the work.</h3>
+        <p>Whether it's shipping code, capturing a portrait, running a rebrand, or building a program — <strong>kaizen (改善)</strong> is the practice. If you have a project worth iterating on, I'd love to hear about it.</p>
       </div>
-      <a class="btn btn-primary" href="mailto:fahiecaden@gmail.com">Start a conversation →</a>
+      <a class="btn btn-primary" href="contact.html">Start a conversation →</a>
     </div>
   </div>
 </section>

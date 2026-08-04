@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Caden Fahie · Kaizen 改善</title>
+<meta name="description" content="Get in touch with Caden Fahie — email, socials, and current availability." />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta property="og:title" content="Contact — Caden Fahie" />
+<meta property="og:description" content="Let's build something worth iterating on." />
+<meta property="og:image" content="og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --warm-white:#FAFAF8; --light-gray:#F3F4F6; --mist:#E9ECF1;
+  --slate:#3F4A59; --slate-soft:#5B6675; --navy:#1E3A5F; --navy-deep:#152B47;
+  --sage:#8FA98E; --sage-soft:#B7C9B4; --muted-blue:#7A94B2; --muted-blue-soft:#B9C7D8;
+  --ink:#1A1F27; --line:rgba(30,58,95,.10);
+  --yin-serif:"Space Grotesk",system-ui,sans-serif;
+  --yin-mono:"JetBrains Mono",ui-monospace,monospace;
+  --yin-body:"Inter",system-ui,sans-serif;
+  --yang-serif:"Cormorant Garamond",Georgia,serif;
+  --radius:18px; --radius-lg:28px;
+  --shadow-sm:0 1px 2px rgba(21,43,71,.06);
+  --shadow:0 8px 24px rgba(21,43,71,.08);
+}
+[data-theme="dark"]{
+  --warm-white:#0F1720; --light-gray:#161F2A; --slate:#C4CBD6; --slate-soft:#8B95A5;
+  --navy:#E8ECF3; --navy-deep:#F5F7FB; --ink:#F5F7FB; --line:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--yin-body);color:var(--ink);background:var(--warm-white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;cursor:pointer;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+.container{width:min(1000px,calc(100% - 48px));margin-inline:auto;}
+.container-narrow{width:min(680px,calc(100% - 48px));margin-inline:auto;}
+
+/* Nav */
+.nav{position:fixed;inset:16px 24px auto 24px;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(250,250,248,.75);backdrop-filter:saturate(180%) blur(18px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-sm);}
+[data-theme="dark"] .nav{background:rgba(15,23,32,.75);}
+.brand{font-family:var(--yin-serif);font-weight:600;font-size:15px;display:flex;gap:10px;align-items:center;color:var(--navy);}
+.brand .dot{width:22px;height:22px;border-radius:999px;background:conic-gradient(from 0deg,var(--navy) 0 50%,var(--warm-white) 0 100%);position:relative;box-shadow:inset 0 0 0 1px var(--line);}
+.brand .dot::after{content:"";position:absolute;inset:0;border-radius:999px;background:radial-gradient(circle at 50% 25%,var(--warm-white) 4px,transparent 5px),radial-gradient(circle at 50% 75%,var(--navy) 4px,transparent 5px);}
+.nav-back{font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);padding:8px 14px;border-radius:999px;transition:.2s;}
+.nav-back:hover{background:var(--light-gray);color:var(--navy);}
+.nav-cta{display:flex;gap:8px;align-items:center;}
+.pill{padding:9px 16px;border-radius:999px;font-size:13px;border:1px solid var(--line);color:var(--navy);background:var(--warm-white);transition:.2s;}
+.pill.solid{background:var(--navy);color:var(--warm-white);border-color:var(--navy);}
+[data-theme="dark"] .pill.solid{background:var(--sage);color:#0F1720;border-color:var(--sage);}
+
+/* Hero */
+.hero{padding:180px 0 60px;text-align:center;}
+.eyebrow{font-family:var(--yin-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--slate-soft);display:inline-flex;align-items:center;gap:12px;}
+.eyebrow::before,.eyebrow::after{content:"";width:20px;height:1px;background:var(--slate-soft);}
+.hero h1{font-family:var(--yin-serif);font-size:clamp(56px,10vw,120px);line-height:.95;letter-spacing:-.035em;color:var(--navy);font-weight:500;margin:22px 0 24px;}
+.hero h1 em{font-family:var(--yang-serif);font-style:italic;font-weight:400;color:var(--slate);}
+.hero p.lead{color:var(--slate);font-size:18px;max-width:560px;margin:0 auto;}
+
+/* Contact methods */
+.methods{padding:60px 0 40px;}
+.methods-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:16px;}
+.method{
+  padding:32px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--warm-white);transition:.25s cubic-bezier(.2,.9,.3,1);
+  display:flex;flex-direction:column;justify-content:space-between;gap:24px;
+  text-decoration:none;color:inherit;
+}
+[data-theme="dark"] .method{background:#161F2A;}
+.method:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;}
+.method .top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.method .icon{width:44px;height:44px;border-radius:12px;background:var(--light-gray);display:grid;place-items:center;color:var(--navy);flex-shrink:0;}
+[data-theme="dark"] .method .icon{background:#0F1720;}
+.method .icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.method .kind{font-family:var(--yin-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate-soft);}
+.method h3{font-family:var(--yin-serif);font-size:22px;font-weight:600;color:var(--navy);margin:8px 0 6px;}
+.method p{color:var(--slate);font-size:14px;}
+.method .action{font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);border-top:1px solid var(--line);padding-top:16px;display:inline-flex;align-items:center;gap:8px;transition:gap .2s;}
+.method:hover .action{gap:14px;}
+@media (max-width:720px){ .methods-grid{grid-template-columns:1fr;} }
+
+/* Availability band */
+.avail{padding:70px 0;background:linear-gradient(135deg,var(--mist),var(--muted-blue-soft));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:80px;}
+[data-theme="dark"] .avail{background:linear-gradient(135deg,#131C26,#1A2432);}
+.avail-inner{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;}
+.avail .dot{width:12px;height:12px;border-radius:999px;background:var(--sage);box-shadow:0 0 0 4px rgba(143,169,142,.25);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(143,169,142,.25);}50%{box-shadow:0 0 0 8px rgba(143,169,142,.15);}}
+.avail h4{font-family:var(--yang-serif);font-style:italic;font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--navy);letter-spacing:-.01em;}
+.avail p{color:var(--slate);margin-top:6px;font-size:16px;}
+@media (max-width:720px){ .avail-inner{grid-template-columns:1fr;text-align:left;} }
+
+/* Info strip */
+.info{padding:60px 0;text-align:center;}
+.info-row{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;font-family:var(--yin-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-soft);}
+.info-row span::before{content:"·";color:var(--sage);margin-right:12px;font-size:22px;line-height:0;position:relative;top:2px;}
+
+/* Footer */
+.footer{padding:60px 0;border-top:1px solid var(--line);text-align:center;color:var(--slate-soft);font-family:var(--yin-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;}
+.footer a{color:var(--slate);padding:0 10px;}
+.footer a:hover{color:var(--navy);}
+.footer em{font-family:var(--yang-serif);font-style:italic;text-transform:none;letter-spacing:0;color:var(--slate);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.9,.3,1);}
+.reveal.in{opacity:1;transform:none;}
+
+.scroll-bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;pointer-events:none;}
+.scroll-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--navy),var(--muted-blue));transition:width .12s linear;}
+
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important;} }
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" aria-hidden="true"><span id="scrollBar"></span></div>
+
+<nav class="nav">
+  <a href="index.html" class="brand"><span class="dot"></span>Caden Fahie</a>
+  <a class="nav-back" href="index.html">← Back home</a>
+  <div class="nav-cta">
+    <a class="pill" href="yin.html">Yin</a>
+    <a class="pill solid" href="yang.html">Yang</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container-narrow reveal">
+    <span class="eyebrow">Contact · 改善</span>
+    <h1>Let's <em>talk.</em></h1>
+    <p class="lead">Whether it's shipping code, capturing a portrait, running a rebrand, or building a program — kaizen is the practice. If you have a project worth iterating on, I'd love to hear about it.</p>
+  </div>
+</header>
+
+<!-- Contact methods -->
+<section class="methods">
+  <div class="container reveal">
+    <div class="methods-grid">
+      <a class="method" href="mailto:fahiecaden@gmail.com">
+        <div>
+          <div class="top">
+            <div>
+              <span class="kind">The best way</span>
+              <h3>Email</h3>
+            </div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </div>
+          </div>
+          <p>Direct, thoughtful, and I read every one. I try to reply within 48 hours.</p>
+        </div>
+        <span class="action">fahiecaden@gmail.com →</span>
+      </a>
+
+      <a class="method" href="https://www.linkedin.com/in/kaizen284/" target="_blank" rel="noopener">
+        <div>
+          <div class="top">
+            <div>
+              <span class="kind">Professional</span>
+              <h3>LinkedIn</h3>
+            </div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+            </div>
+          </div>
+          <p>Connect for roles, collaborations, and everything that lives on the résumé.</p>
+        </div>
+        <span class="action">linkedin.com/in/kaizen284 →</span>
+      </a>
+
+      <a class="method" href="https://www.instagram.com/kaizen_284/?hl=en" target="_blank" rel="noopener">
+        <div>
+          <div class="top">
+            <div>
+              <span class="kind">Creative</span>
+              <h3>Instagram</h3>
+            </div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+            </div>
+          </div>
+          <p>The visual journal — photography, moments, and behind-the-scenes.</p>
+        </div>
+        <span class="action">@kaizen_284 →</span>
+      </a>
+
+      <a class="method" href="https://github.com/Caden284" target="_blank" rel="noopener">
+        <div>
+          <div class="top">
+            <div>
+              <span class="kind">Technical</span>
+              <h3>GitHub</h3>
+            </div>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+          </div>
+          <p>The engineering log — code experiments and open-source projects.</p>
+        </div>
+        <span class="action">github.com/Caden284 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Availability band -->
+<section class="avail">
+  <div class="container">
+    <div class="avail-inner reveal">
+      <div class="dot" aria-hidden="true"></div>
+      <div>
+        <h4>Currently — accepting a small number of projects for late 2026 and Spring 2027.</h4>
+        <p>Ideal fits: brand identity + rebrand, editorial or event photography, dev &amp; design collaborations for founders and nonprofits, mentorship &amp; advocacy programs. Priority for BVI-connected work and student-founder projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Info strip -->
+<section class="info">
+  <div class="container">
+    <div class="info-row reveal">
+      <span>Atlanta · GA</span>
+      <span>British Virgin Islands 🇻🇬</span>
+      <span>Reply within 48 h</span>
+      <span>改善 · Kaizen</span>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <a href="index.html">← Home</a>
+    <a href="yin.html">Yin</a>
+    <a href="yang.html">Yang</a>
+    <br/><br/>
+    © 2026 Caden Fahie · 改善 · <em>Made between Atlanta &amp; the BVI</em>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+})();
+const scrollBar = document.getElementById('scrollBar');
+function onScroll(){
+  const h = document.documentElement;
+  const pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  if(scrollBar) scrollBar.style.width = (pct*100).toFixed(2) + '%';
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
