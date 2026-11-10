@@ -13,7 +13,8 @@ html.os-intro, html.os-intro body { overflow: hidden; }
   position: absolute; right: 24px; bottom: 24px; display: flex; gap: 10px;
   transition: opacity .3s ease;
 }
-#os-intro.os-light .os-controls { opacity: 0; pointer-events: none; }
+#os-intro.os-light .os-controls,
+#os-intro.os-handoff .os-controls { opacity: 0; pointer-events: none; }
 #os-intro button {
   font: 500 13px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .04em;
   color: #E8ECF3; background: rgba(15,23,32,.55); backdrop-filter: blur(8px);
