@@ -1,0 +1,48 @@
+/* ONE SIGNAL intro film — overlay + hero reveal */
+html.os-intro, html.os-intro body { overflow: hidden; }
+#os-intro {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0F1720; transition: background .6s ease;
+}
+#os-intro.os-light { background: #FAFAF8; }
+#os-intro video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block; will-change: transform;
+}
+#os-intro .os-controls {
+  position: absolute; right: 24px; bottom: 24px; display: flex; gap: 10px;
+  transition: opacity .3s ease;
+}
+#os-intro.os-light .os-controls { opacity: 0; pointer-events: none; }
+#os-intro button {
+  font: 500 13px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .04em;
+  color: #E8ECF3; background: rgba(15,23,32,.55); backdrop-filter: blur(8px);
+  border: 1px solid rgba(143,169,142,.55); border-radius: 999px;
+  padding: 0 18px; min-height: 44px; cursor: pointer;
+}
+#os-intro button:hover { border-color: #B7C9B4; }
+#os-intro button:focus-visible { outline: 2px solid #8FA98E; outline-offset: 3px; }
+
+/* while the film plays, everything in the hero except the emblem waits off-stage */
+html.os-intro .nav,
+html.os-intro .hero-left,
+html.os-intro .hero-labels,
+html.os-intro .code-card,
+html.os-intro .hero ~ :not(#os-intro):not(script):not(link) { opacity: 0; transform: translateY(18px); }
+html.os-intro .code-card { transform: translateY(18px) rotate(-3deg); }
+
+/* …then settles in, staggered, on the site's own curve */
+html.os-reveal .nav,
+html.os-reveal .hero-left,
+html.os-reveal .hero-labels,
+html.os-reveal .code-card,
+html.os-reveal .hero ~ :not(#os-intro):not(script):not(link) {
+  transition: opacity .9s ease, transform .9s cubic-bezier(.2,.9,.3,1);
+}
+html.os-reveal .hero-left { transition-delay: .1s; }
+html.os-reveal .code-card { transition-delay: .35s; }
+html.os-reveal .hero-labels { transition-delay: .5s; }
+html.os-reveal .nav { transition-delay: .6s; }
+html.os-reveal .hero ~ :not(#os-intro):not(script):not(link) { transition-delay: .7s; }
+
+@media (prefers-reduced-motion: reduce) { #os-intro { display: none; } }
