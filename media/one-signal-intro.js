@@ -16,10 +16,17 @@
     emblem: { x: 960, y: 540, size: 480 },  // where the film's emblem rests, in film pixels
     spin0: 53.6,           // film emblem angle (deg) = 9 * (t - spin0) once settled — same 40 s/rev as the site
     lightFrom: 57.3,       // film turns to the site's daylight background from here
-    oncePerSession: true
+    oncePerSession: true,
+    // Dark mode: hand off before the film's light wipe (it starts at 57.43 s), while the film's
+    // background still matches the dark site. The emblem holds still at this spot and size from
+    // 55.2 s to 57.2 s, so a glide starting at 56.0 s lands by 57.1 s.
+    dark: { handoffAt: 56.0, emblem: { x: 960, y: 540, size: 378 } }
   };
 
   var html = document.documentElement;
+  var dark = html.getAttribute('data-theme') === 'dark';
+  var handoffAt = dark ? CFG.dark.handoffAt : CFG.handoffAt;
+  var filmEmblem = dark ? CFG.dark.emblem : CFG.emblem;
   var emblemEl = document.querySelector('.hero .emblem');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var params = new URLSearchParams(location.search);
@@ -56,7 +63,7 @@
     var k = cover ? Math.max(vw / CFG.frame.w, vh / CFG.frame.h) : Math.min(vw / CFG.frame.w, vh / CFG.frame.h);
     var ox = (vw - CFG.frame.w * k) / 2, oy = (vh - CFG.frame.h * k) / 2;
     v.style.objectFit = cover ? 'cover' : 'contain';
-    return { k: k, cx: ox + CFG.emblem.x * k, cy: oy + CFG.emblem.y * k, size: CFG.emblem.size * k, vw: vw, vh: vh };
+    return { k: k, cx: ox + filmEmblem.x * k, cy: oy + filmEmblem.y * k, size: filmEmblem.size * k, vw: vw, vh: vh };
   }
   function ease(x) { // cubic-bezier(.2,.9,.3,1) — the site's settle curve
     var lo = 0, hi = 1, t = x;
@@ -81,6 +88,7 @@
   }
   function handoff() {
     if (started) return; started = true;
+    wrap.classList.add('os-handoff');
     var f = fit(), r = emblemEl.getBoundingClientRect();
     // the hero emblem must be on screen to glide onto it (on phones it sits below the fold): otherwise dissolve
     if (r.top < 0 || r.bottom > f.vh || r.left < 0 || r.right > f.vw) { syncSpin(v.currentTime); reveal(); teardown(700); return; }
@@ -107,10 +115,13 @@
     if (done) return; started = true;
     syncSpin(v.currentTime || 0); reveal(); teardown(450); v.pause();
   }
-  v.addEventListener('timeupdate', function () {
-    if (v.currentTime >= CFG.lightFrom) wrap.classList.add('os-light');
-    if (v.currentTime >= CFG.handoffAt) handoff();
-  });
+  function tick() {
+    if (!dark && v.currentTime >= CFG.lightFrom) wrap.classList.add('os-light');
+    if (v.currentTime >= handoffAt) handoff();
+  }
+  v.addEventListener('timeupdate', tick);
+  // timeupdate fires only about 4 times a second; also check every frame so the glide starts on time
+  (function poll() { if (started || done) return; tick(); requestAnimationFrame(poll); })();
   v.addEventListener('ended', handoff);
   v.addEventListener('loadedmetadata', fit);
   window.addEventListener('resize', function () { if (!started) fit(); });
